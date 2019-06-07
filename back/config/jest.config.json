@@ -1,0 +1,27 @@
+{
+  "rootDir": "..",
+  "resetMocks": true,
+  "moduleFileExtensions": [
+    "js",
+    "json"
+  ],
+  "testURL": "http://localhost/",
+  "moduleNameMapper": {
+    "^@/(.*)$": "<rootDir>/src/$1"
+  },
+  "coverageDirectory": "<rootDir>/test/coverage",
+  "collectCoverageFrom": [
+    "src/**/*.{js}",
+    "!src/env/process.js",
+    "!**/node_modules/**"
+  ],
+  "setupTestFrameworkScriptFile": "<rootDir>/config/jest.setup.js",
+  "coverageThreshold": {
+    "global": {
+      "branches": 50,
+      "functions": 50,
+      "lines": 50,
+      "statements": 50
+    }
+  }
+}

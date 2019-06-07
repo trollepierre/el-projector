@@ -1,0 +1,17 @@
+.button {
+    text-transform: uppercase;
+    color: #d14800;
+    background: #fff;
+    border: 1px solid #d14800;
+    cursor: pointer;
+    padding: auto;
+    border-radius: 4px;
+    /*width: 100px;*/
+    /*height: 40px;*/
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+

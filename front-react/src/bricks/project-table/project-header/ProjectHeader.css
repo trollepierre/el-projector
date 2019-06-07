@@ -1,0 +1,7 @@
+.project-header tr {
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: repeat(10, 1fr [col-start]);
+    height: 50px;
+}
+

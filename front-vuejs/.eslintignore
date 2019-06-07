@@ -1,0 +1,5 @@
+/build/
+/config/
+/dist/
+/front/.postcssrc.js
+/test/unit/coverage/

@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateTask.vue should match snapshot 1`] = `
+<tr>
+  <form
+    id="create-task"
+  />
+
+  <td
+    class="next"
+  >
+    <input
+      form="create-task"
+      value="NEXT"
+    />
+  </td>
+
+  <td
+    class="first-name"
+  >
+    <input
+      form="create-task"
+    />
+  </td>
+
+  <td
+    class="last-name"
+  >
+    <input
+      form="create-task"
+    />
+  </td>
+
+  <td
+    class="points"
+  >
+    <input
+      form="create-task"
+    />
+  </td>
+
+  <td
+    class="adjusted-points"
+  >
+    <input
+      form="create-task"
+    />
+  </td>
+
+  <td
+    class="last-date"
+  >
+    <input
+      form="create-task"
+    />
+  </td>
+
+  <td
+    class="impact"
+  />
+
+  <td
+    class="birth-date"
+  >
+    <input
+      form="create-task"
+    />
+  </td>
+
+  <td
+    class="origin"
+  >
+    <input
+      form="create-task"
+    />
+  </td>
+
+  <td>
+    <appbutton-stub
+      backgroundcolor=""
+      color=""
+      text="save"
+    />
+  </td>
+</tr>
+`;

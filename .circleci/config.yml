@@ -1,0 +1,223 @@
+common_properties: &common_properties
+  docker:
+    - image: circleci/node:10.14.1-browsers
+  working_directory: ~/trollepierre/el-projector
+
+version: 2
+jobs:
+  checkout_code:
+    <<: *common_properties
+    steps:
+      - checkout
+      - run: echo "${CIRCLE_BRANCH}_${CIRCLE_SHA1}" > .circle-cache-key
+      - save_cache:
+          key: v1-code-{{ checksum ".circle-cache-key" }}
+          paths:
+            - ~/trollepierre/el-projector
+
+  install_front:
+    <<: *common_properties
+    steps:
+      - run: echo "${CIRCLE_BRANCH}_${CIRCLE_SHA1}" > .circle-cache-key
+      - restore_cache:
+          keys:
+            - v1-code-{{ checksum ".circle-cache-key" }}
+      - restore_cache:
+          keys:
+            - v1-front-dependencies-{{ checksum "front/yarn.lock" }}
+      - run:
+          name: Install front
+          command: yarn install:front
+      - save_cache:
+          key: v1-front-dependencies-{{ checksum "front/yarn.lock" }}
+          paths:
+            - ./front/node_modules
+
+  install_back:
+    <<: *common_properties
+    steps:
+      - run: echo "${CIRCLE_BRANCH}_${CIRCLE_SHA1}" > .circle-cache-key
+      - restore_cache:
+          keys:
+            - v1-code-{{ checksum ".circle-cache-key" }}
+      - restore_cache:
+          keys:
+            - v1-back-dependencies-{{ checksum "back/yarn.lock" }}
+      - run:
+          name: Install back
+          command: yarn install:back
+      - save_cache:
+          key: v1-back-dependencies-{{ checksum "back/yarn.lock" }}
+          paths:
+            - ./back/node_modules
+
+  test_front:
+    <<: *common_properties
+    steps:
+      - run: echo "${CIRCLE_BRANCH}_${CIRCLE_SHA1}" > .circle-cache-key
+      - restore_cache:
+          keys:
+            - v1-code-{{ checksum ".circle-cache-key" }}
+      - restore_cache:
+          keys:
+            - v1-front-dependencies-{{ checksum "front/yarn.lock" }}
+      - run:
+          name: Lint front
+          command: yarn lint:front
+      - run:
+          name: Test front
+          command: yarn test:front
+      - store_test_results:
+          path: /tmp/circleci-test-results/front
+
+  test_back:
+    <<: *common_properties
+    steps:
+      - run: echo "${CIRCLE_BRANCH}_${CIRCLE_SHA1}" > .circle-cache-key
+      - restore_cache:
+          keys:
+            - v1-code-{{ checksum ".circle-cache-key" }}
+      - restore_cache:
+          keys:
+            - v1-back-dependencies-{{ checksum "back/yarn.lock" }}
+      - run:
+          name: Lint back
+          command: yarn lint:back
+      - run:
+          name: Test back
+          command: yarn test:back
+      - store_test_results:
+          path: /tmp/circleci-test-results/back
+
+  build_front:
+    <<: *common_properties
+    steps:
+      - run: echo "${CIRCLE_BRANCH}_${CIRCLE_SHA1}" > .circle-cache-key
+      - restore_cache:
+          keys:
+            - v1-code-{{ checksum ".circle-cache-key" }}
+      - restore_cache:
+          keys:
+            - v1-front-dependencies-{{ checksum "front/yarn.lock" }}
+      - run: yarn build:front
+      - save_cache:
+          key: v1-front-built-{{ checksum "front/yarn.lock" }}
+          paths:
+            - ./front/dist
+
+  build_back:
+    <<: *common_properties
+    steps:
+      - run: echo "${CIRCLE_BRANCH}_${CIRCLE_SHA1}" > .circle-cache-key
+      - restore_cache:
+          keys:
+            - v1-code-{{ checksum ".circle-cache-key" }}
+      - restore_cache:
+          keys:
+            - v1-back-dependencies-{{ checksum "back/yarn.lock" }}
+      - run: yarn build:back
+
+  deploy_branch:
+    <<: *common_properties
+    shell: /bin/bash --login
+    steps:
+      - run: echo "${CIRCLE_BRANCH}_${CIRCLE_SHA1}" > .circle-cache-key
+      - restore_cache:
+          keys:
+            - v1-code-{{ checksum ".circle-cache-key" }}
+      - restore_cache:
+          keys:
+            - v1-front-dependencies-{{ checksum "front/yarn.lock" }}
+      - restore_cache:
+          keys:
+            - v1-front-built-{{ checksum "front/yarn.lock" }}
+      - run:
+          name: Install now
+          command: yarn add now
+      - run:
+          name: Install @now/node
+          command: yarn add @now/node
+      - run:
+          name: Deploy branch to Now branch - yarn now
+          command: |
+            yarn now -t z5JELeQXQui6uHg169jC8QVq
+
+  validate_accessibility_html5v:
+    <<: *common_properties
+    steps:
+      - run: yarn add html5-validator
+      - run: ./node_modules/.bin/html5v https://el-projector-branch.herokuapp.com/
+
+  lighthouse:
+    <<: *common_properties
+    steps:
+      - run: echo "${CIRCLE_BRANCH}_${CIRCLE_SHA1}" > .circle-cache-key
+      - restore_cache:
+          keys:
+            - v1-code-{{ checksum ".circle-cache-key" }}
+      - run: yarn lighthouse
+
+  deploy_staging:
+    <<: *common_properties
+    shell: /bin/bash --login
+    steps:
+      - run: yarn add now
+      - run: echo "${CIRCLE_BRANCH}_${CIRCLE_SHA1}" > .circle-cache-key
+      - restore_cache:
+          keys:
+            - v1-code-{{ checksum ".circle-cache-key" }}
+      - run:
+          name: Deploy dev to Heroku staging
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/el-projector-test.git dev:master
+
+  deploy_master:
+    <<: *common_properties
+    shell: /bin/bash --login
+    steps:
+      - run: echo "${CIRCLE_BRANCH}_${CIRCLE_SHA1}" > .circle-cache-key
+      - restore_cache:
+          keys:
+            - v1-code-{{ checksum ".circle-cache-key" }}
+      - run:
+          name: Deploy master to Heroku
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/el-projector.git master
+
+workflows:
+  version: 2
+  el-projector-workflow:
+    jobs:
+      - checkout_code
+      - install_front:
+          requires:
+            - checkout_code
+      - install_back:
+          requires:
+            - checkout_code
+      - test_front:
+          requires:
+            - install_front
+      - test_back:
+          requires:
+            - install_back
+      - build_front:
+          requires:
+            - install_front
+      - deploy_branch:
+          requires:
+            - test_front
+            - test_back
+            - build_front
+          filters:
+            branches:
+              ignore:
+                - master
+      - deploy_master:
+          requires:
+            - test_front
+            - test_back
+            - build_front
+          filters:
+            branches:
+              only: master

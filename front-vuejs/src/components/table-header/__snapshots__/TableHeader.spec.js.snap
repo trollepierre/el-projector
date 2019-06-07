@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableHeader.vue should match snapshot 1`] = `
+<thead>
+  <th
+    class="next"
+  >
+    <appbutton-stub
+      backgroundcolor="cyan"
+      color="black"
+      text="Next"
+    />
+  </th>
+   
+  <th
+    class="first-name"
+  >
+    <appbutton-stub
+      backgroundcolor="cyan"
+      color="black"
+      text="FirstName"
+    />
+  </th>
+   
+  <th
+    class="last-name"
+  >
+    <appbutton-stub
+      backgroundcolor="cyan"
+      color="black"
+      text="LastName"
+    />
+  </th>
+   
+  <th
+    class="points"
+  >
+    <appbutton-stub
+      backgroundcolor="cyan"
+      color="black"
+      text="Points"
+    />
+  </th>
+   
+  <th
+    class="adjusted-points"
+  >
+    <appbutton-stub
+      backgroundcolor="cyan"
+      color="black"
+      text="Adjusted Points"
+    />
+  </th>
+   
+  <th
+    class="last-date"
+  >
+    <appbutton-stub
+      backgroundcolor="cyan"
+      color="black"
+      text="LastDate"
+    />
+  </th>
+   
+  <th
+    class="impact"
+  >
+    
+    Impact
+  
+  </th>
+   
+  <th
+    class="birth-date"
+  >
+    <appbutton-stub
+      backgroundcolor="cyan"
+      color="black"
+      text="BirthDate"
+    />
+  </th>
+   
+  <th
+    class="origin"
+  >
+    <appbutton-stub
+      backgroundcolor="cyan"
+      color="black"
+      text="Origin"
+    />
+  </th>
+   
+  <th
+    class="action"
+  >
+    
+    Action
+  
+  </th>
+</thead>
+`;

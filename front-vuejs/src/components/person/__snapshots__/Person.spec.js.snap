@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Task.vue should match snapshot 1`] = `
+<tr>
+  <td
+    class="next"
+  >
+
+    05/11/1996
+
+  </td>
+
+  <td
+    class="first-name"
+  >
+
+    Arthur
+
+  </td>
+
+  <td
+    class="last-name"
+  >
+
+    King
+
+  </td>
+
+  <td
+    class="points"
+  >
+
+    999
+
+  </td>
+
+  <td
+    class="adjusted-points"
+  >
+
+    800
+
+  </td>
+
+  <td
+    class="last-date"
+  >
+
+    04/11/1996
+
+  </td>
+
+  <td
+    class="impact"
+  >
+    <appbutton-stub
+      backgroundcolor="green"
+      color="white"
+      text="seen"
+    />
+
+    <appbutton-stub
+      backgroundcolor="orange"
+      color="white"
+      text="later"
+    />
+
+    <appbutton-stub
+      backgroundcolor="red"
+      color="white"
+      text="nope"
+    />
+  </td>
+
+  <td
+    class="birth-date"
+  >
+
+
+
+  </td>
+
+  <td
+    class="origin"
+  >
+
+
+
+  </td>
+
+  <td>
+    <appbutton-stub
+      backgroundcolor=""
+      color=""
+      text="edit"
+    />
+
+    <appbutton-stub
+      backgroundcolor=""
+      color=""
+      text="delete"
+    />
+  </td>
+</tr>
+`;

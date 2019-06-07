@@ -1,0 +1,23 @@
+.DS_Store
+node_modules/
+/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+fixturesForFront.js
+data.*.sqlite
+back/save/
+back/.nyc_output
+
+
+.env

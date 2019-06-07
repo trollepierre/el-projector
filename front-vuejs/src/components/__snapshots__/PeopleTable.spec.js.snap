@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskTable.vue template when one task is being edited should match snapshot 1`] = `
+<div
+  class="my-table"
+>
+  <table>
+    <tableheader-stub />
+
+    <tbody>
+      <createtask-stub
+        newtask="[object Object]"
+      />
+
+      <div>
+        <edittask-stub
+          task="[object Object]"
+        />
+      </div>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`TaskTable.vue template when tasks contain one task should match snapshot 1`] = `
+<div
+  class="my-table"
+>
+  <table>
+    <tableheader-stub />
+
+    <tbody>
+      <createtask-stub
+        newtask="[object Object]"
+      />
+
+      <div>
+        <task-stub
+          birthday=""
+          task="[object Object]"
+        />
+      </div>
+    </tbody>
+  </table>
+</div>
+`;

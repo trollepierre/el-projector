@@ -1,0 +1,14 @@
+.task-raw {
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: repeat(10, 1fr [col-start]);
+    align-items: center;
+    justify-items: center;
+    height: 50px;
+}
+
+td {
+    justify-content: center;
+    justify-items: center;
+    display: flex;
+}

@@ -1,0 +1,46 @@
+{
+  "name": "el-projector",
+  "version": "0.0.1",
+  "description": "Project helper",
+  "author": "Pierre Trollé <trolle.pierre@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build:front": "(cd front-vuejs && yarn build)",
+    "build": "yarn build:front",
+
+    "install:front:vuejs": "(cd front-vuejs && yarn)",
+    "install:front": "(cd front-react && yarn)",
+    "install:back": "(cd back && yarn)",
+    "install": "yarn install:front && yarn install:back",
+
+    "lint:back": "cd back && yarn lint",
+    "lint:front:vuejs": "cd front-vuejs && yarn lint",
+    "lint:front": "cd front-react && yarn lint",
+    "lint": "yarn lint:back && yarn lint:front",
+    "lint:fix": "yarn lint:back --fix && yarn lint:front --fix",
+
+    "save:db": "cd back && yarn save:db",
+    "start:back": "cd back && yarn start",
+    "start:front:vuejs": "cd front-vuejs && yarn start",
+    "start:front": "cd front-react && yarn start",
+    "start": "yarn start:back",
+    "start:watch": "cd back && yarn start:watch",
+
+    "test:back": "cd back && yarn test",
+    "test:front:vuejs": "cd front-vuejs && yarn test",
+    "test:front": "cd front-react && yarn test",
+    "test": "yarn test:back && yarn test:front",
+    "test:unit": "cd back && yarn test:unit && cd ../front-react && yarn test:unit",
+    "now": "now"
+  },
+  "pre-commit": [
+    "lint",
+    "test:unit"
+  ],
+  "devDependencies": {
+    "pre-commit": "1.2.2"
+  },
+  "dependencies": {
+    "now": "13.1.2"
+  }
+}
