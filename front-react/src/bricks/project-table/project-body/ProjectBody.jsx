@@ -21,20 +21,17 @@ export class ProjectBody extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
-    console.log(this.props.fetchTasks);
-
     this.props.fetchTasks();
   }
 
   render() {
-    if (this.props.isLoading) return (<tbody>loading</tbody>)
-    if (this.props.error) return <tbody>An error has occured</tbody>;
-    if(!this.props.tasks) return (<tbody>oops not possible?</tbody>)
-
     return (
       <tbody className="project-body">
-        {this.props.tasks.map(task => {
+      {(this.props.isLoading) ? (<tr><td>loading</td></tr>):null}
+      {(this.props.error) ? <tr><td>An error has occured</td></tr>:null}
+      {(!this.props.data) ? (<tr><td>oops not possible?</td></tr>):null}
+
+        {this.props.data.map(task => {
           return (
             <TaskRaw task={task} key={task.id}/>
           );

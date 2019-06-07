@@ -6,8 +6,6 @@ import logger from '../logger-service'
 async function getAll(path) {
   try {
     const url = `http://localhost:3001/${path}`
-    console.log(url);
-
     const response = await axios.get(url, { json: true })
     return prop('data', response)
   } catch (error) {
