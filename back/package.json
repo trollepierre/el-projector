@@ -31,7 +31,7 @@
     "sqlite3": "4.0.6"
   },
   "devDependencies": {
-    "eslint": "5.12.1",
+    "eslint": "5.16.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jest": "22.1.3",
