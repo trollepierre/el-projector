@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme'
-import App from './App';
+import ProjectForm from './ProjectForm';
 
-describe('App', () => {
+describe('ProjectForm', () => {
   describe('template', () => {
     it('should match snapshot', () => {
       // When
-      const wrapper = shallow(<App/>)
+      const wrapper = shallow(<ProjectForm/>)
 
       // Then
       expect(wrapper).toMatchSnapshot()

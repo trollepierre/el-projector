@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectTable template should match snapshot 1`] = `
+<table
+  className="project-table"
+>
+  <Component />
+  <Connect(ProjectBody) />
+</table>
+`;

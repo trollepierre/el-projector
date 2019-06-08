@@ -1,6 +1,6 @@
-const differ =() => {}
-  const remove =() => {}
-  const eliminate =() => {}
+const differ = () => {}
+const remove = () => {}
+const eliminate = () => {}
 
 
 export {
