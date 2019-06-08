@@ -15,7 +15,7 @@
     "test:watch": "yarn test:unit --watch"
   },
   "dependencies": {
-    "moment": "2.23.0",
+    "moment": "2.24.0",
     "vue": "2.5.22",
     "whatwg-fetch": "3.0.0"
   },
