@@ -41,6 +41,6 @@
     "pre-commit": "1.2.2"
   },
   "dependencies": {
-    "now": "13.1.2"
+    "now": "13.1.3"
   }
 }
