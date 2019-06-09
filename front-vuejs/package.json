@@ -20,7 +20,7 @@
     "whatwg-fetch": "3.0.0"
   },
   "devDependencies": {
-    "@vue/test-utils": "1.0.0-beta.28",
+    "@vue/test-utils": "1.0.0-beta.29",
     "autoprefixer": "9.6.0",
     "axios": "0.19.0",
     "babel-core": "6.26.3",
