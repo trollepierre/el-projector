@@ -45,14 +45,10 @@ describe('Unit | Service | task-service', () => {
     points: 999,
     lastDate: '11/05/2018',
     minNext: '24/06/2018',
-    next: '24/06/2018',
-    nextMeetingDate: '12/05/2018',
-    nextBirthday: '19/10/2018',
     birthDate: '19/10/1991',
     origin: 'Moi',
     country: 'France',
     address: '11 rue du Plouy 62140 Fressin',
-    adjustedPoints: 159,
   }
   const createdTask = {
     ...taskFromFront,
