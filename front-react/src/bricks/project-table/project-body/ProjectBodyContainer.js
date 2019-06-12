@@ -1,7 +1,7 @@
 /* istanbul ignore next */
 import { fetchTasks, tasksSelector } from './store';
 import { connect } from 'react-redux';
-import { ProjectBodyModule } from './ProjectBodyModule';
+import ProjectBodyModule from './ProjectBodyModule';
 
 const mapStateToProps = state => {
   return tasksSelector(state);

@@ -1,43 +1,47 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { TaskRaw } from './task-raw/TaskRaw';
 import PropTypes from 'prop-types';
 
+const MyModule = ({
+    data,
+    isLoading,
+    error,
+    fetchTasks,
+  }) => {
 
-export class ProjectBodyModule extends Component {
-  static propTypes = {
-    isLoading: PropTypes.bool,
-    error: PropTypes.object,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.Number,
-        image_src: PropTypes.string,
-        title: PropTypes.string,
-        price_currency: PropTypes.string,
-        price: PropTypes.string,
-      })
-    ),
-    fetchTasks: PropTypes.func.isRequired,
-  };
+  useEffect( () => {fetchTasks()}, []);
 
-  componentDidMount() {
-    this.props.fetchTasks();
-  }
-
-  render() {
-    return (
-      <tbody className="project-body">
-      {(this.props.isLoading) ? (<tr><td>loading</td></tr>):null}
-      {(this.props.error) ? <tr><td>An error has occured</td></tr>:null}
-      {(!this.props.data) ? (<tr><td>oops not possible?</td></tr>):
-
-        this.props.data.map(task => {
-          return (
-            <TaskRaw task={task} key={task.id}/>
-          );
-        })}
-      </tbody>
+  return (
+  <tbody className="project-body">
+    {(isLoading) ? (<tr><td>loading</td></tr>) : null}
+    {error ? <tr><td>An error has occured</td></tr> : null}
+    {(!data) ? (<tr><td>oops not possible?</td></tr>) :
+      data.map(task => (<TaskRaw task={task} key={task.id}/>))}
+    </tbody>
     );
-  }
-}
+ };
 
-export default ProjectBodyModule;
+MyModule.displayName = 'MyModule';
+
+MyModule.propTypes = {
+  isLoading: PropTypes.bool,
+  error: PropTypes.object,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.Number,
+      image_src: PropTypes.string,
+      title: PropTypes.string,
+      price_currency: PropTypes.string,
+      price: PropTypes.string,
+    })
+  ),
+  fetchTasks: PropTypes.func.isRequired,
+};
+
+MyModule.defaultProps = {
+  isLoading: true,
+  error: undefined,
+  data: {}
+};
+
+export default MyModule;
