@@ -8,7 +8,7 @@ exports[`ProjectHeader template should match snapshot 1`] = `
     <th
       className="id"
     >
-      <ProjectTable
+      <Button
         background-color="cyan"
         color="black'"
         onClick={[Function]}
@@ -18,7 +18,7 @@ exports[`ProjectHeader template should match snapshot 1`] = `
     <th
       className="name"
     >
-      <ProjectTable
+      <Button
         background-color="'cyan'"
         color="'black'"
         onClick={[Function]}
@@ -28,7 +28,7 @@ exports[`ProjectHeader template should match snapshot 1`] = `
     <th
       className="description"
     >
-      <ProjectTable
+      <Button
         background-color="'cyan'"
         color="'black'"
         onClick={[Function]}
@@ -38,7 +38,7 @@ exports[`ProjectHeader template should match snapshot 1`] = `
     <th
       className="points"
     >
-      <ProjectTable
+      <Button
         background-color="'cyan'"
         color="'black'"
         onClick={[Function]}
@@ -48,7 +48,7 @@ exports[`ProjectHeader template should match snapshot 1`] = `
     <th
       className="created-date"
     >
-      <ProjectTable
+      <Button
         background-color="'cyan'"
         color="'black'"
         onClick={[Function]}
@@ -58,7 +58,7 @@ exports[`ProjectHeader template should match snapshot 1`] = `
     <th
       className="last-date"
     >
-      <ProjectTable
+      <Button
         background-color="'cyan'"
         color="'black'"
         onClick={[Function]}
@@ -73,7 +73,7 @@ exports[`ProjectHeader template should match snapshot 1`] = `
     <th
       className="birth-date"
     >
-      <ProjectTable
+      <Button
         background-color="'cyan'"
         color="'black'"
         onClick={[Function]}
@@ -83,7 +83,7 @@ exports[`ProjectHeader template should match snapshot 1`] = `
     <th
       className="origin"
     >
-      <ProjectTable
+      <Button
         background-color="'cyan'"
         color="'black'"
         onClick={[Function]}

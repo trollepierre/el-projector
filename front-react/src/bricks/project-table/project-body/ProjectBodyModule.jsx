@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { TaskRaw } from './task-raw/TaskRaw';
-import { connect } from 'react-redux';
-import { fetchTasks, tasksSelector } from './store';
 import PropTypes from 'prop-types';
 
-export class ProjectBody extends Component {
+
+export class ProjectBodyModule extends Component {
   static propTypes = {
     isLoading: PropTypes.bool,
     error: PropTypes.object,
@@ -29,9 +28,9 @@ export class ProjectBody extends Component {
       <tbody className="project-body">
       {(this.props.isLoading) ? (<tr><td>loading</td></tr>):null}
       {(this.props.error) ? <tr><td>An error has occured</td></tr>:null}
-      {(!this.props.data) ? (<tr><td>oops not possible?</td></tr>):null}
+      {(!this.props.data) ? (<tr><td>oops not possible?</td></tr>):
 
-        {this.props.data.map(task => {
+        this.props.data.map(task => {
           return (
             <TaskRaw task={task} key={task.id}/>
           );
@@ -41,19 +40,4 @@ export class ProjectBody extends Component {
   }
 }
 
-/* istanbul ignore next */
-const mapStateToProps = state => {
-  return tasksSelector(state);
-};
-
-const mapDispatchToProps = {
-  fetchTasks,
-};
-
-/* istanbul ignore next */
-export default
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(ProjectBody)
-;
+export default ProjectBodyModule;

@@ -1,6 +1,6 @@
 import React from 'react';
-import { ProjectHeader } from './project-header/ProjectHeader';
-import { default as ProjectBody } from './project-body/ProjectBody';
+import ProjectHeader from './project-header/ProjectHeader';
+import { default as ProjectBody} from './project-body';
 import styles from './ProjectTable.css'
 
 const ProjectTable = () => (

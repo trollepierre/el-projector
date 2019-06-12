@@ -1,15 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme'
-import { ProjectBody } from './ProjectBody';
-import ProjectBody  from './ProjectBody';
+import ProjectBodyModule  from './ProjectBodyModule';
 
-// TODO define how to test this brick ProjectBody
-
-describe('ProjectBody', () => {
+describe('ProjectBodyModule', () => {
   describe('template', () => {
     it('should match snapshot', () => {
       // When
-      const wrapper = shallow(<ProjectBody/>)
+      const wrapper = shallow(<ProjectBodyModule/>)
 
       // Then
       expect(wrapper).toMatchSnapshot()
