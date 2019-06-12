@@ -1,25 +1,22 @@
 import React from 'react';
 import styles from './Button.css';
 
-function ProjectTable({
+const Button = ({
     text,
     onClick,
     isDisabled,
     color,
     backgroundColor
-  }) {
+  }) => (
+  <button
+    className='button'
+    onClick={onClick}
+    color={color}
+    disabled={isDisabled}
+    // style={backgroundColor: 'backgroundColor', color: color}
+  >
+    {text}
+  </button>
+);
 
-  return (
-    <button
-      className='button'
-      onClick={onClick}
-      color={color}
-      disabled={isDisabled}
-      // style={backgroundColor: 'backgroundColor', color: color}
-    >
-      {text}
-    </button>
-  );
-}
-
-export default ProjectTable;
+export default Button;

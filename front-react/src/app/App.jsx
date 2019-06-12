@@ -6,14 +6,12 @@ import { default as reducer } from '../bricks/project-table/project-body/store';
 
 const store = createStore(reducer)
 
-function App() {
-  return (
-    <div className="App">
-      <Provider store={store}>
-        <ProjectPage/>
-      </Provider>
-    </div>
-  );
-}
+const App = () => (
+  <div className="App">
+    <Provider store={store}>
+      <ProjectPage/>
+    </Provider>
+  </div>
+);
 
 export default App;
