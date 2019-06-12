@@ -27,7 +27,7 @@
   "scripts": {
     "build": "react-scripts build",
     "start": "react-scripts start",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
     "clean": "rimraf dist && mkdirp dist",
     "lint": "eslint --ext .js,.vue src",
