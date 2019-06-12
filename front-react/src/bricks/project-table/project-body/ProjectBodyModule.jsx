@@ -9,7 +9,7 @@ const MyModule = ({
     fetchTasks,
   }) => {
 
-  useEffect( () => {fetchTasks()}, []);
+  useEffect( () => {fetchTasks()}, [fetchTasks]);
 
   return (
   <tbody className="project-body">
