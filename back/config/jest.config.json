@@ -15,7 +15,7 @@
     "!src/env/process.js",
     "!**/node_modules/**"
   ],
-  "setupTestFrameworkScriptFile": "<rootDir>/config/jest.setup.js",
+  "setupFilesAfterEnv": ["<rootDir>/config/jest.setup.js"],
   "coverageThreshold": {
     "global": {
       "branches": 50,
