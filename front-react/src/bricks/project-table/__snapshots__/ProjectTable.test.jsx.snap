@@ -4,7 +4,7 @@ exports[`ProjectTable template should match snapshot 1`] = `
 <table
   className="project-table"
 >
-  <Component />
-  <Component />
+  <ProjectHeader />
+  <Connect(MyModule) />
 </table>
 `;

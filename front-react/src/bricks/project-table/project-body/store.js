@@ -15,24 +15,6 @@ export const fetchTasks = () => async dispatch => {
   dispatch({ type: FETCH_TASKS_STARTED });
 
   try {
-    // const tasksFixtures = [
-    //   {
-    //     id: 1,
-    //     image_src:
-    //       'https://cdn.manomano.fr/martillo-dewalt-dch273n-18v-P-2075566-4162147_1.jpg',
-    //     title: 'Demo react Product',
-    //     price_currency: '€',
-    //     price: '2490.50',
-    //   },
-    //   {
-    //     id: 2,
-    //     image_src:
-    //       'https://cdn.manomano.com/futbolin-de-acero-60-kg-140x745x875-cm-negro-P-334554-10088120_1.jpg',
-    //     title: 'DIY Essential',
-    //     price_currency: '€',
-    //     price: '240.50',
-    //   },
-    // ];
     const data = await apiService.get('tasks');
     dispatch({
       type: FETCH_TASKS_SUCCEEDED,

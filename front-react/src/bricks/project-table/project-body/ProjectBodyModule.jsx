@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { TaskRaw } from './task-raw/TaskRaw';
+import TaskRaw from './task-raw/TaskRaw';
 import PropTypes from 'prop-types';
 
 const MyModule = ({
@@ -28,11 +28,12 @@ MyModule.propTypes = {
   error: PropTypes.object,
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.Number,
-      image_src: PropTypes.string,
-      title: PropTypes.string,
-      price_currency: PropTypes.string,
-      price: PropTypes.string,
+      id: PropTypes.number,
+      name: PropTypes.string,
+      description: PropTypes.string,
+      points: PropTypes.number,
+      createdDate: PropTypes.string,
+      endDate: PropTypes.string,
     })
   ),
   fetchTasks: PropTypes.func.isRequired,
@@ -41,7 +42,7 @@ MyModule.propTypes = {
 MyModule.defaultProps = {
   isLoading: true,
   error: undefined,
-  data: {}
+  data: []
 };
 
 export default MyModule;

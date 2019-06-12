@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskRaw template should match snapshot 1`] = `
+<tr
+  className="task-raw"
+>
+  <td
+    className="id"
+  >
+    1
+  </td>
+  <td
+    className="name"
+  >
+    Build el-projector
+  </td>
+  <td
+    className="description"
+  >
+    more data about how to do it
+  </td>
+  <td
+    className="points"
+  >
+    999
+  </td>
+  <td
+    className="optimal-date"
+  />
+  <td
+    className="priority"
+  >
+    HIGHLY_IMPORTANT
+  </td>
+  <td
+    className="benefit"
+  >
+    ORGASM_HAPPINESS
+  </td>
+  <td
+    className="needed-time"
+  >
+    ONE_MONTH
+  </td>
+  <td>
+    <label
+      htmlFor="done"
+    >
+      Done
+    </label>
+    <input
+      id="done"
+      type="checkbox"
+    />
+  </td>
+  <td
+    className="impact"
+  >
+    <Button
+      background-color="orange"
+      color="white"
+      onClick={[Function]}
+      text="later"
+    />
+  </td>
+</tr>
+`;

@@ -1,5 +1,5 @@
 const dummyTask = task => ({
-  id: 'TASK1',
+  id: 1,
   name: 'Build el-projector',
   description: 'more data about how to do it',
   points: 999, // given by server

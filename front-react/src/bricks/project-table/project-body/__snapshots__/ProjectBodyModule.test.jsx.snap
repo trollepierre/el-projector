@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectBodyModule template should match default snapshot 1`] = `
+<tbody
+  className="project-body"
+>
+  <tr>
+    <td>
+      loading
+    </td>
+  </tr>
+</tbody>
+`;
+
+exports[`ProjectBodyModule template should match snapshot with props 1`] = `
+<tbody
+  className="project-body"
+>
+  <tr>
+    <td>
+      An error has occured
+    </td>
+  </tr>
+  <TaskRaw
+    key="1"
+    task={
+      Object {
+        "benefit": "ORGASM_HAPPINESS",
+        "createdDate": "19/05/2019",
+        "description": "more data about how to do it",
+        "doneDate": undefined,
+        "endDate": undefined,
+        "epicId": "A1",
+        "id": 1,
+        "isDone": false,
+        "masterTaskId": "TASK0",
+        "name": "Build el-projector",
+        "neededMaterial": Array [
+          "MacTo",
+          "iMoi",
+          "MacNo",
+          "home",
+        ],
+        "neededTime": "ONE_MONTH",
+        "optimalDate": undefined,
+        "points": 999,
+        "priority": "HIGHLY_IMPORTANT",
+        "subTaskIds": Array [
+          "TASK10",
+          "TASK11",
+          "TASK12",
+        ],
+      }
+    }
+  />
+  <TaskRaw
+    key="1"
+    task={
+      Object {
+        "benefit": "ORGASM_HAPPINESS",
+        "createdDate": "19/05/2019",
+        "description": "more data about how to do it",
+        "doneDate": undefined,
+        "endDate": undefined,
+        "epicId": "A1",
+        "id": 1,
+        "isDone": false,
+        "masterTaskId": "TASK0",
+        "name": "Build el-projector",
+        "neededMaterial": Array [
+          "MacTo",
+          "iMoi",
+          "MacNo",
+          "home",
+        ],
+        "neededTime": "ONE_MONTH",
+        "optimalDate": undefined,
+        "points": 999,
+        "priority": "HIGHLY_IMPORTANT",
+        "subTaskIds": Array [
+          "TASK10",
+          "TASK11",
+          "TASK12",
+        ],
+      }
+    }
+  />
+</tbody>
+`;
