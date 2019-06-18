@@ -9,6 +9,7 @@ module.exports = function(config) {
     coverageAnalysis: "off",
     jest: {
       projectType: "react"
-    }
+    },
+    thresholds: { high: 80, low: 60, break: 10 }
   });
 };
