@@ -11,6 +11,7 @@
     "install:front": "(cd front-react && yarn)",
     "install:back": "(cd back && yarn)",
     "install": "yarn install:front && yarn install:back",
+    "lighthouse": "(cd tools/lighthouse && yarn) && (cd tools/lighthouse && yarn test)",
     "lint:back": "cd back && yarn lint",
     "lint:front:vuejs": "cd front-vuejs && yarn lint",
     "lint:front": "cd front-react && yarn lint",
