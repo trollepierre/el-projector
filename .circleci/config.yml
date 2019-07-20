@@ -206,9 +206,6 @@ workflows:
       - lighthouse:
           requires:
             - deploy_branch
-          filters:
-            branches:
-              only: lighthouse
       - deploy_master:
           requires:
             - test_front
