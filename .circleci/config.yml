@@ -117,18 +117,18 @@ jobs:
             - v1-back-dependencies-{{ checksum "back/yarn.lock" }}
       - run: yarn build:back
 
-deploy_branch:
-  <<: *common_properties
-  shell: /bin/bash --login
-  steps:
-    - run: echo "${CIRCLE_BRANCH}_${CIRCLE_SHA1}" > .circle-cache-key
-    - restore_cache:
-        keys:
-          - v1-code-{{ checksum ".circle-cache-key" }}
-    - run:
-        name: Deploy branch to Heroku branch
-        command: |
-          git push https://heroku:$HEROKU_API_KEY@git.heroku.com/el-projector-branch.git $CIRCLE_BRANCH:master --force
+  deploy_branch:
+    <<: *common_properties
+    shell: /bin/bash --login
+    steps:
+      - run: echo "${CIRCLE_BRANCH}_${CIRCLE_SHA1}" > .circle-cache-key
+      - restore_cache:
+          keys:
+            - v1-code-{{ checksum ".circle-cache-key" }}
+      - run:
+          name: Deploy branch to Heroku branch
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/el-projector-branch.git $CIRCLE_BRANCH:master --force
 
   validate_accessibility_html5v:
     <<: *common_properties
@@ -203,9 +203,9 @@ workflows:
       - deploy_master:
           requires:
             - checkout_code
-#            - test_front
-#            - test_back
-#            - build_front
+          #            - test_front
+          #            - test_back
+          #            - build_front
           filters:
             branches:
               only: master
