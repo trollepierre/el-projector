@@ -145,6 +145,15 @@ jobs:
             - v1-code-{{ checksum ".circle-cache-key" }}
       - run: yarn lighthouse
 
+  webpagetest:
+    <<: *common_properties
+    steps:
+      - run: echo "${CIRCLE_BRANCH}_${CIRCLE_SHA1}" > .circle-cache-key
+      - restore_cache:
+          keys:
+            - v1-code-{{ checksum ".circle-cache-key" }}
+      - run: npx webpagetest test https://el-projector-branch.herokuapp.com/ --first --poll --specs tools/webpagetest-threshold.json -k $WEBPAGETEST_API_KEY
+
   deploy_staging:
     <<: *common_properties
     shell: /bin/bash --login
@@ -206,6 +215,9 @@ workflows:
       - lighthouse:
           requires:
             - deploy_branch
+      - webpagetest:
+          requires:
+          - deploy_branch
       - deploy_master:
           requires:
             - test_front
