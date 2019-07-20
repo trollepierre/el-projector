@@ -1,6 +1,8 @@
 import React from 'react';
 import Button from '../../../../components/button/Button';
+// eslint-disable-next-line no-unused-vars
 import { eliminate, differ, remove } from '../../services/task-edit';
+// eslint-disable-next-line no-unused-vars
 import styles from './TaskRaw.css'
 
  const TaskRaw = ({ task }) => (
