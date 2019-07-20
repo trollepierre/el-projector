@@ -202,10 +202,9 @@ workflows:
                 - master
       - deploy_master:
           requires:
-            - checkout_code
-          #            - test_front
-          #            - test_back
-          #            - build_front
+            - test_front
+            - test_back
+            - build_front
           filters:
             branches:
               only: master
