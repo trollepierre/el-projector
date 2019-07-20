@@ -1,7 +1,7 @@
 {
   "name": "el-projector-back",
   "version": "0.0.1",
-  "description": "Relations helper",
+  "description": "GTD helper",
   "author": "Pierre Trollé <trolle.pierre@gmail.com>",
   "license": "MIT",
   "scripts": {
