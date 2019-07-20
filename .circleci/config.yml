@@ -215,8 +215,8 @@ workflows:
                 - master
       - deploy_master:
           requires:
-            - test_front
-            - test_back
+#            - test_front
+#            - test_back
             - build_front
           filters:
             branches:

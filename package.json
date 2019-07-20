@@ -5,7 +5,7 @@
   "author": "Pierre Trollé <trolle.pierre@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build:front": "(cd front-vuejs && yarn build)",
+    "build:front": "(cd front-react && yarn build)",
     "build": "yarn build:front",
     "install:front:vuejs": "(cd front-vuejs && yarn)",
     "install:front": "(cd front-react && yarn)",

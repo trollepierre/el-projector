@@ -13,10 +13,10 @@ async function add(task) {
 }
 
 function getTask() {
-  console.log('inside get task services');
+  console.log('inside get task services')
 
   return getAll()
-    // .then(map(enhance))
+  // .then(map(enhance))
 }
 
 async function updateTask(id, task) {

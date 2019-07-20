@@ -11,10 +11,10 @@ router.post('/', (req, res) => addTask(req.body)
   .then(createdTask => res.send(createdTask)))
 
 router.get('/', (req, res) => {
-  console.log('oui tasks route est appelé');
+  console.log('oui tasks route est appelé')
 
   return taskService.get()
-    .then(tasks => res.send(tasks));
+    .then(tasks => res.send(tasks))
 })
 
 router.get('/:id/meeting', (req, res) => meetingService.add(req.params.id)
