@@ -31,7 +31,7 @@ jobs:
       - save_cache:
           key: v1-front-dependencies-{{ checksum "front-react/yarn.lock" }}
           paths:
-            - ./front/node_modules
+            - ./front-react/node_modules
 
   install_back:
     <<: *common_properties
