@@ -24,12 +24,12 @@ jobs:
             - v1-code-{{ checksum ".circle-cache-key" }}
       - restore_cache:
           keys:
-            - v1-front-dependencies-{{ checksum "front/yarn.lock" }}
+            - v1-front-dependencies-{{ checksum "front-react/yarn.lock" }}
       - run:
           name: Install front
           command: yarn install:front
       - save_cache:
-          key: v1-front-dependencies-{{ checksum "front/yarn.lock" }}
+          key: v1-front-dependencies-{{ checksum "front-react/yarn.lock" }}
           paths:
             - ./front/node_modules
 
@@ -60,7 +60,7 @@ jobs:
             - v1-code-{{ checksum ".circle-cache-key" }}
       - restore_cache:
           keys:
-            - v1-front-dependencies-{{ checksum "front/yarn.lock" }}
+            - v1-front-dependencies-{{ checksum "front-react/yarn.lock" }}
       - run:
           name: Lint front
           command: yarn lint:front
@@ -98,10 +98,10 @@ jobs:
             - v1-code-{{ checksum ".circle-cache-key" }}
       - restore_cache:
           keys:
-            - v1-front-dependencies-{{ checksum "front/yarn.lock" }}
+            - v1-front-dependencies-{{ checksum "front-react/yarn.lock" }}
       - run: yarn build:front
       - save_cache:
-          key: v1-front-built-{{ checksum "front/yarn.lock" }}
+          key: v1-front-built-{{ checksum "front-react/yarn.lock" }}
           paths:
             - ./front/dist
 
@@ -127,10 +127,10 @@ jobs:
             - v1-code-{{ checksum ".circle-cache-key" }}
       - restore_cache:
           keys:
-            - v1-front-dependencies-{{ checksum "front/yarn.lock" }}
+            - v1-front-dependencies-{{ checksum "front-react/yarn.lock" }}
       - restore_cache:
           keys:
-            - v1-front-built-{{ checksum "front/yarn.lock" }}
+            - v1-front-built-{{ checksum "front-react/yarn.lock" }}
       - run:
           name: Install now
           command: yarn add now
