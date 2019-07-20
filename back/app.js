@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(cors())
 
-app.use(express.static(path.join(__dirname, '..', 'front-react', 'dist')))
+app.use(express.static(path.join(__dirname, '..', 'front-react', 'build')))
 
 app.use('/tasks', tasksRouter);
 app.use('/db', dbRouter);
