@@ -5,12 +5,15 @@ const Sequelize = require('sequelize')
 const basename = path.basename(__filename)
 const env = process.env.NODE_ENV || 'development'
 const config = require('../db/config.json')[env]
+const { isProduction } = require( '../infrastructure/env/process')
+const env2 = require( '../infrastructure/env/env')
 
 const db = {}
 
 let sequelize
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config)
+
+if (isProduction()) {
+  sequelize = new Sequelize(env2('DATABASE_URL'))
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config)
 }

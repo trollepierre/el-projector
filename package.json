@@ -26,17 +26,6 @@
     "test:front:vuejs": "cd front-vuejs && yarn test",
     "test:front": "cd front-react && yarn test",
     "test": "yarn test:back && yarn test:front",
-    "test:unit": "cd back && yarn test:unit && cd ../front-react && yarn test:unit",
-    "now": "now"
-  },
-  "pre-commit": [
-    "lint",
-    "test:unit"
-  ],
-  "devDependencies": {
-    "pre-commit": "1.2.2"
-  },
-  "dependencies": {
-    "now": "15.4.0"
+    "test:unit": "cd back && yarn test:unit && cd ../front-react && yarn test:unit"
   }
 }

@@ -103,7 +103,7 @@ jobs:
       - save_cache:
           key: v1-front-built-{{ checksum "front-react/yarn.lock" }}
           paths:
-            - ./front/dist
+            - ./front-react/build
 
   build_back:
     <<: *common_properties
@@ -117,30 +117,18 @@ jobs:
             - v1-back-dependencies-{{ checksum "back/yarn.lock" }}
       - run: yarn build:back
 
-  deploy_branch:
-    <<: *common_properties
-    shell: /bin/bash --login
-    steps:
-      - run: echo "${CIRCLE_BRANCH}_${CIRCLE_SHA1}" > .circle-cache-key
-      - restore_cache:
-          keys:
-            - v1-code-{{ checksum ".circle-cache-key" }}
-      - restore_cache:
-          keys:
-            - v1-front-dependencies-{{ checksum "front-react/yarn.lock" }}
-      - restore_cache:
-          keys:
-            - v1-front-built-{{ checksum "front-react/yarn.lock" }}
-      - run:
-          name: Install now
-          command: yarn add now
-      - run:
-          name: Install @now/node
-          command: yarn add @now/node
-      - run:
-          name: Deploy branch to Now branch - yarn now
-          command: |
-            yarn now -t z5JELeQXQui6uHg169jC8QVq
+deploy_branch:
+  <<: *common_properties
+  shell: /bin/bash --login
+  steps:
+    - run: echo "${CIRCLE_BRANCH}_${CIRCLE_SHA1}" > .circle-cache-key
+    - restore_cache:
+        keys:
+          - v1-code-{{ checksum ".circle-cache-key" }}
+    - run:
+        name: Deploy branch to Heroku branch
+        command: |
+          git push https://heroku:$HEROKU_API_KEY@git.heroku.com/el-projector-branch.git $CIRCLE_BRANCH:master --force
 
   validate_accessibility_html5v:
     <<: *common_properties
@@ -161,7 +149,6 @@ jobs:
     <<: *common_properties
     shell: /bin/bash --login
     steps:
-      - run: yarn add now
       - run: echo "${CIRCLE_BRANCH}_${CIRCLE_SHA1}" > .circle-cache-key
       - restore_cache:
           keys:
