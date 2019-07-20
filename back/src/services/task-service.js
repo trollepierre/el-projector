@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 const { map } = require('ramda')
 const { enhance } = require('../domain/task')
 const { today } = require('../utils/date-utils')
@@ -13,8 +14,7 @@ async function add(task) {
 }
 
 function getTask() {
-  console.log('inside get task services')
-
+  // console.log('inside get task services')
   return getAll()
   // .then(map(enhance))
 }

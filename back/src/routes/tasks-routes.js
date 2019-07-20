@@ -11,6 +11,7 @@ router.post('/', (req, res) => addTask(req.body)
   .then(createdTask => res.send(createdTask)))
 
 router.get('/', (req, res) => {
+  // eslint-disable-next-line no-console
   console.log('oui tasks route est appelé')
 
   return taskService.get()
