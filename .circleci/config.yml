@@ -200,6 +200,15 @@ workflows:
             branches:
               ignore:
                 - master
+      - validate_accessibility_html5v:
+          requires:
+            - deploy_branch
+      - lighthouse:
+          requires:
+            - deploy_branch
+          filters:
+            branches:
+              only: lighthouse
       - deploy_master:
           requires:
             - test_front
