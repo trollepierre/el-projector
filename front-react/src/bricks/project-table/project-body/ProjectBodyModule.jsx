@@ -3,14 +3,15 @@ import TaskRaw from './task-raw/TaskRaw';
 import PropTypes from 'prop-types';
 
 const MyModule = ({
-    data,
-    isLoading,
-    error,
+    tasks,
     fetchTasks,
   }) => {
+  const { data, isLoading, error } = tasks
 
-  // useEffect( () => {fetchTasks()}, [fetchTasks]);
-  //
+  useEffect(() => {
+    fetchTasks()
+  }, [])
+
   return (
   <tbody className="project-body">
     {(isLoading) ? (<tr><td>loading</td></tr>) : null}

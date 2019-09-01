@@ -16,14 +16,16 @@ const LoginForm = () => {
       email: 'pierre@recontact.me',
       name: input.current.value
     };
-    let tokens = await api.post('login', data);
-    console.log('after await');
-    console.log(tokens);
-    console.log({auth});
-
-    await auth.authenticate(tokens, data)
-    setIsAuthenticated(true)
-    return tokens;
+    api.post('login', data)
+    .then(async tokens => {
+      await auth.authenticate(tokens, data)
+      setIsAuthenticated(true)
+      return tokens;
+    })
+      .catch(err => {
+        setIsAuthenticated(false)
+        alert('wrong password')
+      })
   }
 
   return (
