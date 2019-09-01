@@ -35,22 +35,15 @@ export default {
   },
 
   isAuthenticated() {
-    console.log('inside isAuth');
-    console.log(window.localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY));
-    console.log(canUseDOM);
-
-    let newVar = (canUseDOM) ? !!window.localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY) : null;
-    console.log({ newVar });
-
-    return newVar;
+    return canUseDOM ? !!window.localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY) : null;
   },
 
   getAccessToken() {
-    return (canUseDOM) ? window.localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY) : null;
+    return canUseDOM ? window.localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY) : null;
   },
 
   getAuthenticatedUser() {
-    return (canUseDOM) ? JSON.parse(window.localStorage.getItem(AUTHENTICATED_USER_STORAGE_KEY)) : null;
+    return canUseDOM ? JSON.parse(window.localStorage.getItem(AUTHENTICATED_USER_STORAGE_KEY)) : null;
   },
 
 };

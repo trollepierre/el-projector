@@ -9,21 +9,29 @@ function generateOptionsWithAccessToken() {
   return { headers: { Authorization: `Bearer ${accessToken}`, json: true } };
 }
 
-async function getAll(path) {
+async function getAll(path, setIsAuthenticated) {
   try {
+    console.log('insde get all');
+
     const url = `http://localhost:3001/${path}`
     const options = generateOptionsWithAccessToken()
-    console.log(options);
-
     const response = await axios.get(url, options)
+    console.log('response -- api');
+    console.log(prop('data', response)) ;
+
+
     return prop('data', response)
   } catch (error) {
-    console.log({ error});
+    console.log('error -- api');
+
+    console.log({ error });
+    await setIsAuthenticated(false)
+    await authenticationService.disconnect()
 
     if(error.status === 401) {
       console.log('error');
-
       await authenticationService.disconnect()
+      setIsAuthenticated(false)
     }
     logger.error(error)
     alert(error.message)

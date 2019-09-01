@@ -4,10 +4,11 @@ var bodyParser = require('body-parser')
 var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
-const cors = require('cors')
+var cors = require('cors')
 
-var tasksRouter = require('./src/routes/tasks-routes');
-var dbRouter = require('./src/routes/db');
+var tasksRouter = require('./src/routes/tasks-routes')
+var dbRouter = require('./src/routes/db')
+var loginRouter = require('./src/routes/login-routes')
 
 var app = express()
 
@@ -19,8 +20,11 @@ app.use(cors())
 
 app.use(express.static(path.join(__dirname, '..', 'front-react', 'build')))
 
-app.use('/tasks', tasksRouter);
-app.use('/db', dbRouter);
+app.use('/login', loginRouter)
+// app.use(require('./src/routes/tokenChecker'))
+//
+app.use('/tasks', tasksRouter)
+app.use('/db', dbRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -28,7 +32,7 @@ app.use(function (req, res, next) {
 })
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
   // set locals, only providing error in development
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}

@@ -11,16 +11,23 @@ export const FETCH_TASKS_FAILED = 'FETCH_TASKS_FAILED';
 //   return tasks
 // })
 
-const fetchTasks = () => async dispatch => {
+const fetchTasks = (setIsAuthenticated) => async dispatch => {
+  console.log('inside fetch tasks');
+
   dispatch({ type: FETCH_TASKS_STARTED });
 
   try {
     const data = await apiService.get('tasks');
+    console.log('inside store with');
+    console.log({ data });
+
     dispatch({
       type: FETCH_TASKS_SUCCEEDED,
       payload: data,
     });
+
   } catch (error) {
+    console.log('inside error of store');
     dispatch({
       type: FETCH_TASKS_FAILED,
       error,
@@ -31,7 +38,6 @@ const fetchTasks = () => async dispatch => {
 export const actions = {
   fetchTasks,
 };
-
 
 export const initialState = {
   tasks: {
@@ -53,7 +59,8 @@ export const actionHandlers = {
     };
   },
   [FETCH_TASKS_SUCCEEDED]: (state, action) => {
-    return {
+    console.log('inside succeeded');
+    let newStore = {
       ...state,
       tasks: {
         data: action.payload,
@@ -61,6 +68,8 @@ export const actionHandlers = {
         isLoading: false,
       },
     };
+    console.log({ newStore});
+    return newStore;
   },
   [FETCH_TASKS_FAILED]: (state, action) => {
     return {
