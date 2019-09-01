@@ -7,6 +7,7 @@ const Button = ({
     onClick,
     isDisabled,
     color,
+  type,
     backgroundColor
   }) => (
   <button
@@ -14,6 +15,8 @@ const Button = ({
     onClick={onClick}
     color={color}
     disabled={isDisabled}
+    type={type}
+    
     // style={backgroundColor: 'backgroundColor', color: color}
   >
     {text}

@@ -9,13 +9,19 @@ async function getAll(path) {
     const response = await axios.get(url, { json: true })
     return prop('data', response)
   } catch (error) {
-    logger.error(error.message)
+    logger.error(error)
+    alert(error.message)
   }
 }
 
 async function post(path, data) {
   try {
-    const url = `${env('API_URL')}${path}`
+    console.log('inside post');
+
+    // const url = `${env('API_URL')}${path}`
+    const url = `http://localhost:3001/${path}`
+    console.log({url});
+
     const response = await axios.post(url, { ...data, json: true })
     return prop('data', response)
   } catch (error) {
