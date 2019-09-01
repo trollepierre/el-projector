@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../../../components/button/Button';
+import Button from '../../../../components/Button/Button';
 // eslint-disable-next-line no-unused-vars
 import { eliminate, differ, remove } from '../../services/task-edit';
 // eslint-disable-next-line no-unused-vars

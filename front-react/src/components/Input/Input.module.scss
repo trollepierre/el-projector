@@ -1,0 +1,268 @@
+/**
+ * Copyright (c) Colibri SAS - ManoMano
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// Color Palette
+$squidInk: #0c193a !default;
+$blueMood: #0397a7 !default;
+$balataGreen: #29b9ad !default;
+$balataGreenHover: #00dbcd !default;
+$articCitric: #00eccd !default;
+$bellaNotte: #1e3c87 !default;
+$locoLimon: #fff950 !default;
+$vaALaPlaya: #ffb950 !default;
+$pepeRosa: #ef87e6 !default;
+$cocoCorail: #e6685a !default;
+$hellblau: #5ad7ef !default;
+$purpleRain: #6455c8 !default;
+$menthealeau: #5aefbe !default;
+$kaktus: #5ac869 !default;
+
+// Greys
+$manoBlack: #424242 !default;
+$greyMedDarker: #7c7c7c !default;
+$greyDarker: #b4b4b4 !default;
+$greyDark: #d4d4d4 !default;
+$greyMed: #e8e8e8 !default;
+$greyLight: #fafafa !default;
+
+// Not colors
+$black: #000000 !default;
+$white: #ffffff !default;
+
+// Uses
+$brand-primary: $squidInk !default;
+$brand-secondary: $balataGreen !default;
+$danger: $cocoCorail !default;
+$dangerLight: lighten($danger, 30%) !default;
+$success: $kaktus;
+$successLight: lighten($success, 30%) !default;
+$borderColor: $greyDark !default;
+$hover: $articCitric !default;
+$indicateur: #2684ff !default;
+
+$browser-context: 16px;
+
+$main-font: 'Open Sans', mm-main, arial, sans-serif; // mm-main is the Open Sans font with the custom naming as used in manomano-sf
+
+/*Use 'calc' to Up or Down spacing*/
+$doubleSpace: 32;
+$space: 16;
+$halfSpace: 8;
+$smallSpace: 4;
+
+$radius: 3;
+$border-width: 1;
+$border-style: solid;
+
+$timeout: 250ms;
+$fastTimeout: 150ms;
+$delay: 75ms;
+
+$in: cubic-bezier(0, 0, 0.2, 1);
+$out: cubic-bezier(0.4, 0, 1, 1);
+
+$nav: em(80); // Unused var
+$sidenav: em(240); // Unused var
+
+$layers: (
+        modal: 9000,
+        fullscreen: 8000,
+        sidebar: 8500,
+        nav: 7000,
+        header: 6000,
+        notification: 5000,
+        mask: 4000,
+        cta: 3000,
+        footer: 2000,
+);
+
+$levels: (
+        max: 500,
+        top: 200,
+        middle: 100,
+);
+
+$sub-levels: (
+        max: 50,
+        top: 20,
+        middle: 10,
+);
+
+/* MediaQueries */
+
+$breakpoints: (
+        'phone': 320px,
+        'tablet': 768px,
+        'desktop': 1168px,
+        'fullDesktop': 1369px,
+);
+
+@mixin mq($width, $type: min) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+    @if $type == max {
+      $width: $width - 1px;
+    }
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
+
+@function em($pixels, $context: $browser-context) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 1em;
+}
+
+$iconSpace: em(42, 14);
+
+.container {
+  position: relative;
+  width: 100%;
+
+  &:not(:last-child) {
+    margin-bottom: em($space);
+  }
+
+  .helper,
+  .error {
+    display: block;
+    width: 100%;
+    margin-top: em($smallSpace, 12);
+    color: $greyMedDarker;
+    font-size: em(12);
+    text-align: left;
+  }
+
+  .error {
+    color: $cocoCorail;
+  }
+}
+
+.content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+
+  label {
+    display: block;
+    position: absolute;
+    margin-left: em($space, 14);
+    color: $greyMedDarker;
+    font-size: em(14);
+    transform-origin: 0 50%;
+    transition: transform 0.1s linear;
+    will-change: transform;
+
+    pointer-events: none;
+
+    &.required:after {
+      content: '*';
+      display: inline-block;
+      color: $cocoCorail;
+      padding-left: em($smallSpace);
+    }
+  }
+
+  input {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: em(19, 14) em($space, 14) em($space, 14); // higher padding top to compensate floating label, as in inVision spec
+    background-color: $white;
+    background-clip: padding-box;
+    border: em($border-width) $border-style $borderColor;
+    border-radius: em($radius, 14);
+    box-sizing: border-box;
+    font: em(14) 'Open Sans';
+    line-height: 1;
+    will-change: transform;
+
+    &.hasError {
+      border-color: $cocoCorail;
+    }
+
+    &.hasIndicator {
+      padding-right: calc(30% + em(28, 14));
+    }
+  }
+
+  input:focus {
+    outline-color: $borderColor;
+  }
+
+  input:focus + label,
+  &.hasValue input + label {
+    transform: translate(em(1, 14), em(-16, 14)) scale(0.8);
+  }
+
+  input:disabled,
+  input:disabled + label {
+    background-color: $greyLight;
+    cursor: not-allowed;
+  }
+
+  .icon,
+  .indicator {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    top: 0;
+    right: em($space);
+    color: $greyDarker;
+    svg {
+      fill: $greyDarker;
+    }
+  }
+
+  .indicator {
+    max-width: 30%;
+    word-break: break-all;
+  }
+
+  &.hasSuccess svg {
+    fill: $kaktus;
+  }
+
+  &.reverse {
+    input {
+      padding-left: $iconSpace;
+    }
+    label {
+      transform: translate(em(24, 14), 0);
+    }
+
+    input:focus + label,
+    &.hasValue input + label {
+      transform: translate(em(27, 14), em(-16, 14)) scale(0.75);
+    }
+
+    .icon {
+      right: initial;
+      left: em($space);
+    }
+
+    &.hasSuccess svg {
+      fill: $greyDarker;
+    }
+  }
+}
+
+.inputLight {
+  input {
+    padding: em(16, 14) em(12, 14) !important;
+  }
+}
