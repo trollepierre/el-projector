@@ -18,6 +18,13 @@ async function getAll(path) {
     const response = await axios.get(url, options)
     return prop('data', response)
   } catch (error) {
+    console.log({ error});
+
+    if(error.status === 401) {
+      console.log('error');
+
+      await authenticationService.disconnect()
+    }
     logger.error(error)
     alert(error.message)
   }

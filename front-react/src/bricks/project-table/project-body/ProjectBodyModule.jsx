@@ -9,8 +9,8 @@ const MyModule = ({
     fetchTasks,
   }) => {
 
-  useEffect( () => {fetchTasks()}, [fetchTasks]);
-
+  // useEffect( () => {fetchTasks()}, [fetchTasks]);
+  //
   return (
   <tbody className="project-body">
     {(isLoading) ? (<tr><td>loading</td></tr>) : null}

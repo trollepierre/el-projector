@@ -30,15 +30,7 @@ export default {
     return new Promise((resolve) => {
       _removeItemFromLocalStorage(ACCESS_TOKEN_STORAGE_KEY);
       _removeItemFromLocalStorage(AUTHENTICATED_USER_STORAGE_KEY);
-
-      if (window.gapi && window.gapi.auth2) {
-        const auth2 = window.gapi.auth2.getAuthInstance();
-        auth2.signOut().then(() => {
-          resolve();
-        });
-      } else {
-        resolve();
-      }
+      resolve();
     });
   },
 
@@ -48,7 +40,7 @@ export default {
     console.log(canUseDOM);
 
     let newVar = (canUseDOM) ? !!window.localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY) : null;
-    console.log({ newVar});
+    console.log({ newVar });
 
     return newVar;
   },

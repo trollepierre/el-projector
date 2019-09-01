@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LoginForm from '../../bricks/LoginForm'
+import { auth } from '../../services';
+import { useAppContext } from '../../app/AppContext';
 
-const LoginPage = () => (
-  <div className="login-page">
-    <LoginForm/>
-  </div>
-);
+const LoginPage = () => {
+  const { setIsAuthenticated } = useAppContext();
+
+  useEffect( () => {
+    async function fetchIsAuth() {
+      return await auth.isAuthenticated()
+    }
+    fetchIsAuth().then(isAuth => {
+      if(isAuth) return setIsAuthenticated(isAuth);
+    })
+  }, []);
+
+  return (
+    <div className="login-page">
+      <LoginForm/>
+    </div>
+  );
+};
 
 export default LoginPage;
