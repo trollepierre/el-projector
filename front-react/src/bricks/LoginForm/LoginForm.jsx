@@ -1,8 +1,10 @@
 import React from 'react';
 import { Button, Input } from '../../components';
 import { auth, api } from '../../services'
+import { useAppContext } from '../../app/AppContext';
 
 const LoginForm = () => {
+  const { setIsAuthenticated } = useAppContext()
   const input = React.createRef();
 
   const handleSubmit = async (e) => {
@@ -20,6 +22,7 @@ const LoginForm = () => {
     console.log({auth});
 
     await auth.authenticate(tokens, data)
+    setIsAuthenticated(true)
     return tokens;
   }
 

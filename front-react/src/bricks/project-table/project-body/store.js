@@ -11,7 +11,7 @@ export const FETCH_TASKS_FAILED = 'FETCH_TASKS_FAILED';
 //   return tasks
 // })
 
-export const fetchTasks = () => async dispatch => {
+const fetchTasks = () => async dispatch => {
   dispatch({ type: FETCH_TASKS_STARTED });
 
   try {
@@ -27,6 +27,11 @@ export const fetchTasks = () => async dispatch => {
     });
   }
 };
+
+export const actions = {
+  fetchTasks,
+};
+
 
 export const initialState = {
   tasks: {
