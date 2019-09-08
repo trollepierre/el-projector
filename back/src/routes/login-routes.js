@@ -1,29 +1,34 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
 
+const { connect } = require('../use_cases')
+
 const router = express.Router()
-const config = require('./config')
 
 const tokenList = {}
+
+const config = {
+  'secret': process.env.ACCESS_TOKEN_SECRET,
+  'refreshTokenSecret': process.env.REFRESH_TOKEN_SECRET,
+  'port': 3000,
+  'tokenLife': 900,
+  'refreshTokenLife': 86400,
+}
 
 router.post('/', (req, res) => {
   const postData = req.body
   const user = {
-    'email': postData.email,
-    'name': postData.name,
+    email: postData.email,
+    name: postData.name,
   }
-  // do the database authentication here, with user name and password combination.
-  if(postData.name !== process.env.PASSWORD) return res.status(401).send('Unauthorized')
 
-  const token = jwt.sign(user, config.secret, { expiresIn: config.tokenLife })
-  const refreshToken = jwt.sign(user, config.refreshTokenSecret, { expiresIn: config.refreshTokenLife })
-  const response = {
-    'status': 'Logged in',
-    token,
-    refreshToken,
+  try {
+    const response = connect(user)
+    tokenList[response.refreshToken] = response
+    return res.status(200).json(response)
+  } catch(error) {
+    return res.status(401).send(error.message)
   }
-  tokenList[refreshToken] = response
-  res.status(200).json(response)
 })
 
 router.post('/token', (req, res) => {
