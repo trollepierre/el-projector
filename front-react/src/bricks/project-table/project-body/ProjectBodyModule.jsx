@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
 import TaskRaw from './task-raw/TaskRaw';
 import PropTypes from 'prop-types';
+import { useAppContext } from '../../../app/AppContext';
 
 const ProjectBodyModule = ({
     tasks,
     fetchTasks,
   }) => {
   const { data, isLoading, error } = tasks
+  const { setIsAuthenticated } = useAppContext()
 
   useEffect(() => {
     fetchTasks()
+      .catch(error => setIsAuthenticated(false))
   }, [fetchTasks])
 
   return (
