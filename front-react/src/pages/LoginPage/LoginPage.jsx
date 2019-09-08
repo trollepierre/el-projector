@@ -13,7 +13,7 @@ const LoginPage = () => {
     fetchIsAuth().then(isAuth => {
       if(isAuth) return setIsAuthenticated(isAuth);
     })
-  }, [setIsAuthenticated, auth]);
+  }, [setIsAuthenticated]);
 
   return (
     <div className="login-page">
