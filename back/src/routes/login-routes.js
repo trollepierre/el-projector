@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
     'name': postData.name,
   }
   // do the database authentication here, with user name and password combination.
-  if(postData.name !== process.env['PASSWORD']) return res.status(401).send('Unauthorized')
+  if(postData.name !== process.env.PASSWORD) return res.status(401).send('Unauthorized')
 
   const token = jwt.sign(user, config.secret, { expiresIn: config.tokenLife })
   const refreshToken = jwt.sign(user, config.refreshTokenSecret, { expiresIn: config.refreshTokenLife })

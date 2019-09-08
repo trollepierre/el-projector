@@ -1,5 +1,5 @@
 const request = require('supertest')
-const jsonwebtoken = require('jsonwebtoken');
+const jsonwebtoken = require('jsonwebtoken')
 
 const app = require('../../app')
 const meetingService = require('../services/meeting-service')
