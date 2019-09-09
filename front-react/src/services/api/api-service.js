@@ -9,14 +9,13 @@ function generateOptionsWithAccessToken() {
 }
 
 async function getAll(path) {
-  const url = `http://localhost:3001/${path}`;
+  const url = `http://localhost:3001/${path}`; // TODO: use env + /api
   try {
     const options = generateOptionsWithAccessToken();
     const response = await axios.get(url, options);
     return prop('data', response);
   } catch (error) {
-    logger.error(path, error);
-    alert(error.message);
+    logger.error(error);
     throw error
   }
 }
@@ -29,6 +28,7 @@ async function post(path, data, isUnauthenticated = false) {
     return prop('data', response);
   } catch (error) {
     logger.error(error);
+    throw error
   }
 }
 
@@ -40,6 +40,7 @@ async function put(path, data) {
     return prop('data', response);
   } catch (error) {
     logger.error(error);
+    throw error
   }
 }
 
@@ -51,6 +52,7 @@ async function deleteTask(path) {
     return prop('data', response);
   } catch (error) {
     logger.error(error);
+    throw error
   }
 }
 
