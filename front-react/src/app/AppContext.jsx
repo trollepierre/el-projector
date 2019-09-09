@@ -9,6 +9,7 @@ export const useAppContext = () => useContext(AppContext);
 const getProps = (state, dispatch) => ({
   ...state,
   setIsAuthenticated: isAuthenticated => actions.setIsAuthenticated(isAuthenticated)(dispatch),
+  authenticate: value => actions.authenticate(value)(dispatch),
 });
 
 export const AppProvider = ({ children }) => {

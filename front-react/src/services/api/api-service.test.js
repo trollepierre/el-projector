@@ -1,5 +1,5 @@
 import axios from 'axios'
-import logger from '../logger-service'
+import logger from '../logger/logger-service'
 import apiService from './api-service'
 import env from '../../env/env'
 

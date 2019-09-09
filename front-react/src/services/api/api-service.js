@@ -1,7 +1,7 @@
-import axios from 'axios'
-import { prop } from 'ramda'
-import env from '../../env/env'
-import logger from '../logger-service'
+import axios from 'axios';
+import { prop } from 'ramda';
+import env from '../../env/env';
+import logger from '../logger/logger-service';
 import authenticationService from '../auth/auth-service';
 import { api, auth } from '../index';
 
@@ -11,93 +11,67 @@ function generateOptionsWithAccessToken() {
 }
 
 async function getAll(path) {
-    console.log('inside get all');
-    const url = `http://localhost:3001/${path}`
-    const options = generateOptionsWithAccessToken()
+  const url = `http://localhost:3001/${path}`;
   try {
-
-    const response = await axios.get(url, options)
-    console.log('response -- api');
-    console.log(prop('data', response)) ;
-
-
-    return prop('data', response)
+    const options = generateOptionsWithAccessToken();
+    const response = await axios.get(url, options);
+    return prop('data', response);
   } catch (error) {
-    console.log('error -- api');
-
-    console.log({ error });
-    // await setIsAuthenticated(false)
-    // await authenticationService.disconnect()
-    //
-    console.log(error.message);
-
-
-    if(error.message === 'Request failed with status code 401') {
-      console.log('error catché youpi');
-      // await authenticationService.disconnect()
-
-      const refreshToken = await authenticationService.getRefreshToken()
-
-      return api.post('login/token', {refreshToken})
+    if (error.message === 'Request failed with status code 401') {
+      const refreshToken = await authenticationService.getRefreshToken();
+      return api.post('login/token', { refreshToken })
         .then(async tokens => {
-          await auth.reauthenticate(tokens)
+          await auth.reauthenticate(tokens);
           const response = await axios.get(url, generateOptionsWithAccessToken())
             .catch(err => {
-              alert('the get after reauthenticated fails')
-              console.log(err);
-              throw err
-            })
-          console.log('response -- api');
-          console.log(prop('data', response)) ;
-          return prop('data', response)
+              alert('the get after reauthenticated fails');
+              console.log(err.message);
+              throw err;
+            });
+          return prop('data', response);
         })
         .catch(err => {
-          alert('an error with refresh token happe')
+          alert('an error with refresh token happe');
           console.log(err.message);
-          throw err
-        })
+          throw err;
+        });
 
     }
-    logger.error(error)
-    alert(error.message)
+    logger.error(error);
+    alert(error.message);
   }
 }
 
 async function post(path, data, isUnauthenticated = false) {
   try {
-    console.log('inside post');
-
-    // const url = `${env('API_URL')}${path}`
-    const url = `http://localhost:3001/${path}`
-    console.log({url});
-
-    const options = (isUnauthenticated) ? { json: true } : generateOptionsWithAccessToken()
-    const response = await axios.post(url, data, options)
-    return prop('data', response)
+    const url = `http://localhost:3001/${path}`;
+    const options = (isUnauthenticated) ? { json: true } : generateOptionsWithAccessToken();
+    const response = await axios.post(url, data, options);
+    return prop('data', response);
   } catch (error) {
-    logger.error(error)
+    logger.error(error);
   }
 }
 
 async function put(path, data) {
   try {
-    const url = `${env('API_URL')}${path}`
-    const options = generateOptionsWithAccessToken()
-    const response = await axios.patch(url, data, options)
-    return prop('data', response)
+    const url = `${env('API_URL')}${path}`;
+    const options = generateOptionsWithAccessToken();
+    const response = await axios.patch(url, data, options);
+    return prop('data', response);
   } catch (error) {
-    logger.error(error)
+    logger.error(error);
   }
 }
 
 async function deleteTask(path) {
   try {
-    const url = `${env('API_URL')}${path}`
-    const options = generateOptionsWithAccessToken()
-    const response = await axios.delete(url, options)
-    return prop('data', response)
+    const url = `${env('API_URL')}${path}`;
+    const options = generateOptionsWithAccessToken();
+    const response = await axios.delete(url, options);
+    return prop('data', response);
   } catch (error) {
-    logger.error(error)
+    logger.error(error);
   }
 }
 
@@ -106,4 +80,4 @@ export default {
   post,
   put,
   delete: deleteTask,
-}
+};
