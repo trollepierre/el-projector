@@ -1,31 +1,14 @@
 import React from 'react';
 import { Button, Input } from '../../components';
-import { auth, api } from '../../services'
 import { useAppContext } from '../../app/AppContext';
 
 const LoginForm = () => {
-  const { setIsAuthenticated } = useAppContext()
+  const { authenticate } = useAppContext()
   const input = React.createRef();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    console.log('before await');
-
-    let data = {
-      secret: input.current.value,
-      email: 'pierre@recontact.me',
-      name: input.current.value
-    };
-    api.post('login', data)
-    .then(async tokens => {
-      await auth.authenticate(tokens, data)
-      setIsAuthenticated(true)
-      return tokens;
-    })
-      .catch(err => {
-        setIsAuthenticated(false)
-        alert('wrong password')
-      })
+  const handleSubmit = async event => {
+    event.preventDefault()
+    authenticate(input.current.value)
   }
 
   return (

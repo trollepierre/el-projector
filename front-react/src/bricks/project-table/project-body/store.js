@@ -12,10 +12,7 @@ export const FETCH_TASKS_FAILED = 'FETCH_TASKS_FAILED';
 // })
 
 const fetchTasks = (setIsAuthenticated) => async dispatch => {
-  console.log('inside fetch tasks');
-
   dispatch({ type: FETCH_TASKS_STARTED });
-
   try {
     const data = await apiService.get('tasks');
     console.log('inside store with');
