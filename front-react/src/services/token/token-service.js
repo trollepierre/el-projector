@@ -5,20 +5,19 @@ export const REFRESH_TOKEN_STORAGE_KEY = 'refresh_token';
 export const AUTHENTICATED_USER_STORAGE_KEY = 'authenticated_user';
 
 function _saveAccessTokenIntoLocalStorage(accessToken) {
-  return (canUseDOM) ? window.localStorage.setItem(ACCESS_TOKEN_STORAGE_KEY, accessToken) : false;
+  return canUseDOM ? window.localStorage.setItem(ACCESS_TOKEN_STORAGE_KEY, accessToken) : false;
 }
 
 function _saveRefreshTokenIntoLocalStorage(refreshToken) {
-  return (canUseDOM) ? window.localStorage.setItem(REFRESH_TOKEN_STORAGE_KEY, refreshToken) : false;
+  return canUseDOM ? window.localStorage.setItem(REFRESH_TOKEN_STORAGE_KEY, refreshToken) : false;
 }
 
 function _removeItemFromLocalStorage(storageKey) {
-  return (canUseDOM) ? window.localStorage.removeItem(storageKey) : null;
+  return canUseDOM ? window.localStorage.removeItem(storageKey) : null;
 }
 
 export default {
-
-  authenticate(tokens, data) {
+  saveUserTokens(tokens, data) {
     _removeItemFromLocalStorage(ACCESS_TOKEN_STORAGE_KEY);
 
     _saveAccessTokenIntoLocalStorage(tokens.token);
@@ -26,6 +25,7 @@ export default {
 
     const authenticatedUser = {
       name: data.name,
+      secret: data.secret,
       email: data.email,
     };
     window.localStorage.setItem(AUTHENTICATED_USER_STORAGE_KEY, JSON.stringify(authenticatedUser));
@@ -42,9 +42,10 @@ export default {
     return (canUseDOM) ? window.localStorage.getItem(REFRESH_TOKEN_STORAGE_KEY) : null;
   },
 
-  disconnect() {
+  removeTokens() {
     return new Promise((resolve) => {
       _removeItemFromLocalStorage(ACCESS_TOKEN_STORAGE_KEY);
+      _removeItemFromLocalStorage(REFRESH_TOKEN_STORAGE_KEY);
       _removeItemFromLocalStorage(AUTHENTICATED_USER_STORAGE_KEY);
       resolve();
     });

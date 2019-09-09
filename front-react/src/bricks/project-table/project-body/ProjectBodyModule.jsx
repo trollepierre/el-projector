@@ -8,11 +8,11 @@ const ProjectBodyModule = ({
     fetchTasks,
   }) => {
   const { data, isLoading, error } = tasks
-  const { setIsAuthenticated } = useAppContext()
+  const { loginSilently } = useAppContext()
 
   useEffect(() => {
-      fetchTasks()
-  }, [])
+    fetchTasks(loginSilently);
+  }, []);
 
   return (
   <tbody className="project-body">

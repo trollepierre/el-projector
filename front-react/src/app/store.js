@@ -1,5 +1,5 @@
 import { withReducer } from '../store/withReducer';
-import { api, auth, logger } from '../services';
+import { api, token, logger } from '../services';
 
 const SET_IS_AUTHENTICATED = 'app/SET_IS_AUTHENTICATED';
 
@@ -15,7 +15,7 @@ const authenticate = value => async dispatch => {
       name: value
     };
     const tokens = await api.post('login', data)
-    await auth.authenticate(tokens, data)
+    await token.saveUserTokens(tokens, data)
     dispatch({ type: SET_IS_AUTHENTICATED, payload: { isAuthenticated: true }})
   } catch (error) {
     dispatch({ type: SET_IS_AUTHENTICATED, payload: { isAuthenticated: false }})
@@ -24,9 +24,23 @@ const authenticate = value => async dispatch => {
   }
 }
 
+const loginSilently = () => async dispatch => {
+  try {
+    const refreshToken = await token.getRefreshToken();
+    const tokens = await api.post('login/token', { refreshToken })
+    await token.reauthenticate(tokens);
+    dispatch({ type: SET_IS_AUTHENTICATED, payload: { isAuthenticated: true }})
+  } catch (error) {
+    dispatch({ type: SET_IS_AUTHENTICATED, payload: { isAuthenticated: false }})
+    logger.error(error.message);
+    alert('problem during login silently')
+  }
+}
+
 export const actions = {
   setIsAuthenticated,
   authenticate,
+  loginSilently,
 };
 
 export const initialState = {

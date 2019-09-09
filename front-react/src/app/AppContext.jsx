@@ -10,6 +10,7 @@ const getProps = (state, dispatch) => ({
   ...state,
   setIsAuthenticated: isAuthenticated => actions.setIsAuthenticated(isAuthenticated)(dispatch),
   authenticate: value => actions.authenticate(value)(dispatch),
+  loginSilently: () => actions.loginSilently()(dispatch),
 });
 
 export const AppProvider = ({ children }) => {
