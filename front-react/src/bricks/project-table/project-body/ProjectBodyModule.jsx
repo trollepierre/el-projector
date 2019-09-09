@@ -11,9 +11,8 @@ const ProjectBodyModule = ({
   const { setIsAuthenticated } = useAppContext()
 
   useEffect(() => {
-    fetchTasks()
-      .catch(error => setIsAuthenticated(false))
-  }, [fetchTasks])
+      fetchTasks()
+  }, [])
 
   return (
   <tbody className="project-body">

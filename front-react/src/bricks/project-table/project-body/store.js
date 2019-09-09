@@ -27,6 +27,8 @@ const fetchTasks = (setIsAuthenticated) => async dispatch => {
     });
 
   } catch (error) {
+    console.log(error.message);
+
     console.log('inside error of store');
     dispatch({
       type: FETCH_TASKS_FAILED,
