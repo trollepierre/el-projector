@@ -1,22 +1,14 @@
-import apiService from '../../../services/api/api-service'
+import apiService from '../../../services/api/api-service';
 import { withReducer } from '../../../store/withReducer';
 
 export const FETCH_TASKS_STARTED = 'FETCH_TASKS_STARTED';
 export const FETCH_TASKS_SUCCEEDED = 'FETCH_TASKS_SUCCEEDED';
 export const FETCH_TASKS_FAILED = 'FETCH_TASKS_FAILED';
 
-// this.sortedTasks = apiService.get('tasks').then(tasks => {
-//   console.log('tasks');
-//   console.log(tasks);
-//   return tasks
-// })
-
-const fetchTasks = (setIsAuthenticated) => async dispatch => {
+const fetchTasks = loginSilently => async dispatch => {
   dispatch({ type: FETCH_TASKS_STARTED });
   try {
-    const data = await apiService.get('tasks');
-    console.log('inside store with');
-    console.log({ data });
+    const data = await apiService.get('tasks', loginSilently);
 
     dispatch({
       type: FETCH_TASKS_SUCCEEDED,
@@ -24,9 +16,17 @@ const fetchTasks = (setIsAuthenticated) => async dispatch => {
     });
 
   } catch (error) {
-    console.log(error.message);
-
-    console.log('inside error of store');
+    if (error.message === 'Request failed with status code 401') {
+      try {
+        await loginSilently();
+        return fetchTasks(loginSilently)(dispatch);
+      } catch (error) {
+        dispatch({
+          type: FETCH_TASKS_FAILED,
+          error,
+        });
+      }
+    }
     dispatch({
       type: FETCH_TASKS_FAILED,
       error,
@@ -58,8 +58,7 @@ export const actionHandlers = {
     };
   },
   [FETCH_TASKS_SUCCEEDED]: (state, action) => {
-    console.log('inside succeeded');
-    let newStore = {
+    return {
       ...state,
       tasks: {
         data: action.payload,
@@ -67,8 +66,6 @@ export const actionHandlers = {
         isLoading: false,
       },
     };
-    console.log({ newStore});
-    return newStore;
   },
   [FETCH_TASKS_FAILED]: (state, action) => {
     return {
