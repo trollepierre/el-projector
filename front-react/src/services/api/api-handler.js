@@ -11,7 +11,7 @@ const getAxiosConfiguration = ({ method, apiPath, data }) => ({
   method,
   data,
   headers: {
-    ...token.getAccessToken() ? { Authorization: `Bearer ${(token.getAccessToken())}` } : {},
+    ...({ ...token.getAccessToken() ? { Authorization: `Bearer ${(token.getAccessToken())}` } : {} }),
   },
 });
 
@@ -29,4 +29,4 @@ const axiosHandler = (method, update) => (apiPath, data) =>
 
 export {
   axiosHandler
-}
+};
