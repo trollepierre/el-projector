@@ -1,6 +1,6 @@
 const lolex = require('lolex')
-const meetingService = require('./meeting-service')
-const { Task } = require('../domain/models')
+const meetingService = require('../meeting-service')
+const { Task } = require('../../domain/models')
 
 describe('Unit | Service | meeting-service', () => {
   const id = 'id concerned task'
