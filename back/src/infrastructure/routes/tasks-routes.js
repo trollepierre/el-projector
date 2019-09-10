@@ -6,7 +6,7 @@ const { addTask } = require('../../use_cases/add-task')
 const taskService = require('../../use_cases/task-service')
 const meetingService = require('../../use_cases/meeting-service')
 const taskFixtures = require('./fixtures')
-const auth = require('../services/auth')
+const { auth } = require('../services/auth')
 
 router.post('/', auth, (req, res) => addTask(req.body)
   .then(createdTask => res.send(createdTask)))
