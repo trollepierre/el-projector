@@ -1,4 +1,4 @@
-const { numberOfDaysInLate } = require('../utils/date-utils')
+const { numberOfDaysInLate } = require('../../infrastructure/utils/date-utils')
 
 const ACCEPTABLE_NUMBER_OF_DAYS_IN_LATE = 7
 const MINIMUM_AMOUNT_OF_POINTS_LEFT = 1

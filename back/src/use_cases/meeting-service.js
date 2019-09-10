@@ -1,6 +1,6 @@
-const { addDays, formatDateWithLittleEndianLongFormat, today } = require('../utils/date-utils')
-const { calculateDiffer } = require('../hidden-domain/estimate-optimal-delay')
-const { get, update } = require('../repositories/task-repository')
+const { addDays, formatDateWithLittleEndianLongFormat, today } = require('../infrastructure/utils/date-utils')
+const { calculateDiffer } = require('../domain/hidden-domain/estimate-optimal-delay')
+const { get, update } = require('../domain/repositories/task-repository')
 const { enhance } = require('../domain/task')
 
 async function add(id) {

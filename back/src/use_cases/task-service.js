@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 const { map } = require('ramda')
 const { enhance } = require('../domain/task')
-const { today } = require('../utils/date-utils')
-const { getAll, create, update, delete: deleteTask } = require('../repositories/task-repository')
+const { today } = require('../infrastructure/utils/date-utils')
+const { getAll, create, update, delete: deleteTask } = require('../domain/repositories/task-repository')
 
 async function add(task) {
   const taskWithPoints = task.points ? task : { ...task, points: 50 }

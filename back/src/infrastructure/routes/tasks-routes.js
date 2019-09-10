@@ -2,9 +2,9 @@ const express = require('express')
 const { isEmpty } = require('ramda')
 
 const router = express.Router()
-const { addTask } = require('../use_cases/add-task')
-const taskService = require('../services/task-service')
-const meetingService = require('../services/meeting-service')
+const { addTask } = require('../../use_cases/add-task')
+const taskService = require('../../use_cases/task-service')
+const meetingService = require('../../use_cases/meeting-service')
 const taskFixtures = require('./fixtures')
 const auth = require('../services/auth')
 

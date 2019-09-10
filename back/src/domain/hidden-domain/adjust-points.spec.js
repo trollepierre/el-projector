@@ -1,5 +1,5 @@
 const lolex = require('lolex')
-const { subDays } = require('../utils/date-utils')
+const { subDays } = require('../../infrastructure/utils/date-utils')
 const { adjustPoints } = require('./adjust-points')
 
 describe('Unit | Domain | adjust-points', () => {
