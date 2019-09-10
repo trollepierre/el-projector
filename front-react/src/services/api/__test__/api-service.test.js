@@ -1,4 +1,4 @@
-import apiService from './api-service';
+import apiService from '../api-service';
 
 jest.mock('./api-handler', () => ({ axiosHandler: (method, update) => () => ({ method, update }) }));
 
