@@ -17,11 +17,6 @@ const fetchTasks = (loginSilently, isCancelled) => async dispatch => {
     });
 
   } catch (error) {
-    console.log(error);
-    console.log({error});
-    console.log(error.message);
-    console.log(error.status);
-
     if (error.message === 'Request failed with status code 401') {
       try {
         console.log('inside fetch tasks');
@@ -34,7 +29,6 @@ const fetchTasks = (loginSilently, isCancelled) => async dispatch => {
         });
       }
     }
-
     dispatch({
       type: FETCH_TASKS_FAILED,
       error,

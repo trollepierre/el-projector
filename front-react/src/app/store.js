@@ -36,6 +36,8 @@ const authenticate = value => async dispatch => {
 const loginSilently = () => async dispatch => {
   try {
     const refreshToken = await token.getRefreshToken();
+    console.log({refreshToken});
+    if(!refreshToken) return;
     console.log('1');
     const tokens = await api.post('login/token', { refreshToken })
     console.log('2');
@@ -51,6 +53,7 @@ const loginSilently = () => async dispatch => {
     console.log('7');
     await token.removeTokens()
     alert('problem during login silently')
+    throw error
   }
 }
 

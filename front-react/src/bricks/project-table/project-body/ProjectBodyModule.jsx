@@ -11,6 +11,8 @@ const ProjectBodyModule = ({
   const { loginSilently } = useAppContext()
 
   useEffect(() => {
+    console.log('use effect is called');
+
     let isCancelled = false;
     fetchTasks(loginSilently, isCancelled);
     return () => {
