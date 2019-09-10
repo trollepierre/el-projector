@@ -20,7 +20,7 @@ const handleErrors = error => {
   throw error;
 };
 
-const axiosHandler = (method, update) => (apiPath, data) =>
+const axiosHandler = (method, update) => (apiPath, data = undefined) =>
   Promise
     .resolve(getAxiosConfiguration({ method, apiPath, data }))
     .then(axios)
