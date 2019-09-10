@@ -5,14 +5,9 @@ const router = express.Router()
 const tokenList = {}
 
 router.post('/', (req, res) => {
-  const postData = req.body
-  const user = {
-    email: postData.email,
-    name: postData.name,
-  }
-
+  const { email, name } = req.body
   try {
-    const response = connect({ user, tokenList })
+    const response = connect({ user: { email, name }, tokenList })
     return res.status(200).json(response)
   } catch (error) {
     return res.status(401).send(error.message)
@@ -20,14 +15,9 @@ router.post('/', (req, res) => {
 })
 
 router.post('/token', (req, res) => {
-  const postData = req.body
-  const user = {
-    email: postData.email,
-    name: postData.name,
-  }
-
+  const { email, name, refreshToken: token } = req.body
   try {
-    const response = refreshToken({ user, tokenList, refreshToken: postData.refreshToken })
+    const response = refreshToken({ user: { email, name }, tokenList, refreshToken: token })
     return res.status(200).json(response)
   } catch (error) {
     return res.status(403).send(error.message)

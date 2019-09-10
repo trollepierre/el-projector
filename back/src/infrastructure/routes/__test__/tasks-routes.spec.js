@@ -1,11 +1,11 @@
 const request = require('supertest')
 const jsonwebtoken = require('jsonwebtoken')
 
-const app = require('../../../app')
-const meetingService = require('../../use_cases/meeting-service')
-const taskService = require('../../use_cases/task-service')
-const { addTask } = require('../../use_cases/add-task')
-const { dummyTask } = require('../utils/test/dummy-task')
+const app = require('../../../../app')
+const meetingService = require('../../../use_cases/meeting-service')
+const taskService = require('../../../use_cases/task-service')
+const { addTask } = require('../../../use_cases/add-task')
+const { dummyTask } = require('../../utils/test/dummy-task')
 
 jest.mock('jsonwebtoken')
 jest.mock('../use_cases/add-task')
