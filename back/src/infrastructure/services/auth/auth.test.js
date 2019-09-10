@@ -1,11 +1,19 @@
-const { auth } = require('./index')
 const jwt = require('jsonwebtoken')
 
+const { auth } = require('./index')
+
 describe('auth', () => {
-  const req = {}
-  const jsonMock = jest.fn()
-  const res = { status: jest.fn(() => ({ json: jsonMock })) }
-  const next = jest.fn()
+  let req
+  let jsonMock
+  let res
+  let next
+
+  beforeEach(() => {
+    req = {}
+    jsonMock = jest.fn()
+    res = { status: jest.fn(() => ({ json: jsonMock })) }
+    next = jest.fn()
+  })
 
   it('should return error when headers not set', () => {
     // When
