@@ -1,6 +1,6 @@
 const moment = require('moment')
-const taskService = require('../src/services/task-service');
-const fileService = require('../src/services/file-service');
+const taskService = require('../src/use_cases/task-service');
+const fileService = require('../src/infrastructure/services/file-service');
 
 let now = moment().format('YYYY-MM-DD:HH:mm:ss');
 taskService.get()

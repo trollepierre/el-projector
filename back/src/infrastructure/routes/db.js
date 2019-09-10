@@ -2,7 +2,7 @@ const express = require('express')
 const { isEmpty } = require('ramda')
 
 const router = express.Router()
-const taskService = require('../services/task-service')
+const taskService = require('../../use_cases/task-service')
 const fileService = require('../services/file-service')
 const taskFixtures = require('./fixtures')
 const { formatDateWithInternationalLongDateTimeFormat } = require('../utils/date-utils')

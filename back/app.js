@@ -6,9 +6,9 @@ var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 var cors = require('cors')
 
-var tasksRouter = require('./src/routes/tasks-routes')
-var dbRouter = require('./src/routes/db')
-var loginRouter = require('./src/routes/login-routes')
+var tasksRouter = require('./src/infrastructure/routes/tasks-routes')
+var dbRouter = require('./src/infrastructure/routes/db')
+var loginRouter = require('./src/infrastructure/routes/login-routes')
 
 var app = express()
 

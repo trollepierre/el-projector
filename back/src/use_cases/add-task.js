@@ -1,5 +1,5 @@
 const { init, enhance } = require('../domain/task')
-const { create: save } = require('../repositories/task-repository')
+const { create: save } = require('../domain/repositories/task-repository')
 
 const addTask = async taskFromFront => {
   const taskToCreate = init(taskFromFront)

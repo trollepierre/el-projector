@@ -1,6 +1,6 @@
 const lolex = require('lolex')
 const taskService = require('./task-service')
-const { Task } = require('../models')
+const { Task } = require('../domain/models')
 
 describe('Unit | Service | task-service', () => {
   let now

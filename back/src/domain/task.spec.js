@@ -1,6 +1,6 @@
 const lolex = require('lolex')
 const { init, enhance } = require('./task')
-const { dummyTask } = require('../test/dummy-task')
+const { dummyTask } = require('../infrastructure/utils/test/dummy-task')
 
 describe('Unit | Domain | task', () => {
   let now

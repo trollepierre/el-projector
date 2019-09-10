@@ -1,6 +1,6 @@
-const { today } = require('../utils/date-utils')
+const { today } = require('../infrastructure/utils/date-utils')
 
-const { get, update } = require('../repositories/task-repository')
+const { get, update } = require('../domain/repositories/task-repository')
 const { enhance } = require('../domain/task')
 
 async function addMeeting(id) {

@@ -4,7 +4,7 @@
     "password": null,
     "database": "database_development",
     "dialect": "sqlite",
-    "storage": "./src/db/data.development.sqlite",
+    "storage": "./src/domain/db/data.development.sqlite",
     "host": "127.0.0.1"
   },
   "test": {
@@ -12,7 +12,7 @@
     "password": null,
     "database": "database_test",
     "dialect": "sqlite",
-    "storage": "./src/db/data.development.sqlite",
+    "storage": "./src/domain/db/data.development.sqlite",
     "host": "127.0.0.1"
   },
   "production": {

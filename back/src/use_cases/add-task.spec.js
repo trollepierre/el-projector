@@ -1,6 +1,6 @@
 const lolex = require('lolex')
 const { addTask } = require('./add-task')
-const { Task } = require('../models')
+const { Task } = require('../domain/models')
 
 describe('add-task', () => {
   let now

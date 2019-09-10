@@ -1,4 +1,4 @@
-const { Task } = require('../models/index')
+const { Task } = require('../models')
 
 function get(id) {
   return Task.findOne({ where: { id } })

@@ -1,7 +1,7 @@
 const { pick } = require('ramda')
-const { today } = require('../utils/date-utils')
-const { estimateOptimalDelay } = require('../hidden-domain/estimate-optimal-delay')
-const { adjustPoints } = require('../hidden-domain/adjust-points')
+const { today } = require('../infrastructure/utils/date-utils')
+const { estimateOptimalDelay } = require('./hidden-domain/estimate-optimal-delay')
+const { adjustPoints } = require('./hidden-domain/adjust-points')
 const {
   formatDateWithLittleEndianLongFormat,
   earliestDate,
@@ -10,7 +10,7 @@ const {
   determineNextBirthday,
   parseDate,
   isValid,
-} = require('../utils/date-utils')
+} = require('../infrastructure/utils/date-utils')
 
 const init = task => ({
   ...task,

@@ -1,7 +1,7 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
 
-const { connect } = require('../use_cases')
+const { connect } = require('../../use_cases')
 
 const router = express.Router()
 
