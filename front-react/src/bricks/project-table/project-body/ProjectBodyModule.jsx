@@ -11,7 +11,11 @@ const ProjectBodyModule = ({
   const { loginSilently } = useAppContext()
 
   useEffect(() => {
-    fetchTasks(loginSilently);
+    let isCancelled = false;
+    fetchTasks(loginSilently, isCancelled);
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
   return (

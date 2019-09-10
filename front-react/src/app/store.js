@@ -3,9 +3,18 @@ import { api, token, logger } from '../services';
 
 const SET_IS_AUTHENTICATED = 'app/SET_IS_AUTHENTICATED';
 
-const setIsAuthenticated = isAuthenticated => dispatch =>
-  dispatch({ type: SET_IS_AUTHENTICATED, payload: { isAuthenticated }
-});
+const setIsAuthenticated = isAuthenticated => dispatch => {
+  console.log('alors');
+
+  console.log({ isAuthenticated});
+
+  if(!isAuthenticated){
+    token.removeTokens()
+  }
+  return dispatch({
+    type: SET_IS_AUTHENTICATED, payload: { isAuthenticated }
+  });
+};
 
 const authenticate = value => async dispatch => {
   try {
@@ -27,12 +36,20 @@ const authenticate = value => async dispatch => {
 const loginSilently = () => async dispatch => {
   try {
     const refreshToken = await token.getRefreshToken();
+    console.log('1');
     const tokens = await api.post('login/token', { refreshToken })
+    console.log('2');
     await token.reauthenticate(tokens);
-    dispatch({ type: SET_IS_AUTHENTICATED, payload: { isAuthenticated: true }})
+    console.log('3');
+    await dispatch({ type: SET_IS_AUTHENTICATED, payload: { isAuthenticated: true }})
+    console.log('4');
   } catch (error) {
-    dispatch({ type: SET_IS_AUTHENTICATED, payload: { isAuthenticated: false }})
+    console.log('5');
+    await dispatch({ type: SET_IS_AUTHENTICATED, payload: { isAuthenticated: false }})
+    console.log('6');
     logger.error(error.message);
+    console.log('7');
+    await token.removeTokens()
     alert('problem during login silently')
   }
 }

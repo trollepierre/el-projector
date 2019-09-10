@@ -1,30 +1,31 @@
 const jwt = require('jsonwebtoken')
-const { connect } = require('../connect')
+const { refreshToken } = require('../refresh-token')
 
-describe('connect', () => {
+describe('refreshToken', () => {
   const user = {
     name: process.env.PASSWORD,
   }
-  const tokenList = []
+  let tokenList = []
   beforeEach(() => {
     jwt.sign = jest.fn()
+    tokenList = {}
   })
 
   it('should return response with status, token and refresh token', () => {
     // Given
     const token = 'token'
-    const refreshToken = 'refresh token'
     jwt.sign.mockReturnValueOnce(token)
-    jwt.sign.mockReturnValueOnce(refreshToken)
+    const realRefreshToken = 'refreshToken'
+    tokenList[realRefreshToken] = 'old token'
 
     // When
-    const response = connect({ user, tokenList })
+    const response = refreshToken({ refreshToken: realRefreshToken, user, tokenList })
 
     // Then
     expect(response).toEqual({
       status: 'Logged in',
       token,
-      refreshToken,
+      refreshToken: 'refreshToken',
     })
   })
 
@@ -33,7 +34,7 @@ describe('connect', () => {
     jwt.sign = jest.fn()
 
     // When
-    connect({ user, tokenList })
+    refreshToken({ user, tokenList })
 
     // Then
     expect(jwt.sign).toHaveBeenCalledWith(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 900 })
@@ -48,7 +49,7 @@ describe('connect', () => {
     jwt.sign.mockReturnValueOnce(refreshToken)
 
     // When
-    connect({ user, tokenList })
+    refreshToken({ user, tokenList })
 
     // Then
     expect(tokenList).toEqual([refreshToken])
@@ -61,7 +62,7 @@ describe('connect', () => {
 
     // When
     try {
-      connect({ user, tokenList })
+      refreshToken({ user, tokenList })
     } catch (err) {
       // Then
       expect(err.message).toEqual('Unauthorized')
