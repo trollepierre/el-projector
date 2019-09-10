@@ -17,7 +17,7 @@ describe('connect', () => {
     jwt.sign.mockReturnValueOnce(refreshToken)
 
     // When
-    const response = connect()
+    const response = connect( user )
 
     // Then
     expect(response).toEqual({
@@ -49,7 +49,7 @@ describe('connect', () => {
       connect(user)
     } catch(err) {
       // Then
-      expect(err.message).toEqual('Incorrect password')
+      expect(err.message).toEqual('Unauthorized')
     }
   })
 })

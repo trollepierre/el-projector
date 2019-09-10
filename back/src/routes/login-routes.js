@@ -25,8 +25,6 @@ router.post('/', (req, res) => {
   try {
     const response = connect(user)
     tokenList[response.refreshToken] = response
-    console.log(tokenList);
-
     return res.status(200).json(response)
   } catch(error) {
     return res.status(401).send(error.message)
@@ -37,12 +35,6 @@ router.post('/token', (req, res) => {
   // refresh the damn token
   const postData = req.body
   // if refresh token exists
-  console.log('{postData}');
-  console.log(postData);
-  console.log('postData.refreshToken');
-  console.log(postData.refreshToken);
-  console.log('tokenList');
-  console.log(tokenList);
   const refreshToken = postData.refreshToken
 
   if(refreshToken && (refreshToken in tokenList)) {
