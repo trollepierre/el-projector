@@ -27,9 +27,11 @@ describe('ProjectBodyModule', () => {
       // Given
       const props = {
         fetchTasks: jest.fn(),
-        isLoading: false,
-        error: { message: 'error' },
-        data: [dummyTask(), dummyTask()]
+        tasks: {
+          isLoading: false,
+          error: { message: 'error' },
+          data: [dummyTask(), dummyTask()]
+        }
       };
 
       // When
@@ -43,11 +45,11 @@ describe('ProjectBodyModule', () => {
   describe('onMount', () => {
     it('should fetch task', () => {
       // Given
-      const fetchTasks = jest.fn()
+      const fetchTasks = jest.fn();
       console.error = jest.fn();
 
       // When
-      mount(<ProjectBodyModule fetchTasks={fetchTasks}/>)
+      mount(<ProjectBodyModule fetchTasks={fetchTasks}/>);
 
       // Then
       expect(fetchTasks).toHaveBeenCalledWith(loginSilentlyMock, false);

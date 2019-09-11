@@ -7,12 +7,8 @@ const LoginPage = () => {
   const { setIsAuthenticated } = useAppContext();
 
   useEffect( () => {
-    async function fetchIsAuth() {
-      return await tokenService.isAuthenticated()
-    }
-    fetchIsAuth().then(isAuth => {
-      if(isAuth) return setIsAuthenticated(isAuth);
-    })
+    const isAuth = tokenService.isAuthenticated()
+    if(isAuth) return setIsAuthenticated(isAuth);
   }, [setIsAuthenticated]);
 
   return (
