@@ -4,20 +4,25 @@ import axios from 'axios';
 import { logger, token } from '../../index';
 import { axiosHandler } from '../api-handler';
 
-jest.mock('axios')
+jest.mock('axios');
 jest.mock('../../../env/env');
 
 describe('axiosHandler', () => {
-  const updateMock = jest.fn(data => data);
+
   // const API_URL = 'http://localhost:3001/';
   const data = { hello: 'world' };
   const path = 'tasks';
   // const url = `${API_URL}${path}`;
+  let updateMock;
+
+  beforeEach(() => {
+    updateMock = jest.fn();
+  });
 
   describe('when the promise resolves data', () => {
     beforeEach(() => {
       // env.mockReturnValue(API_URL);
-      axios.mockResolvedValue({ data })
+      axios.mockResolvedValue({ data });
     });
 
     it('should call the correct API status endpoint', async () => {
@@ -26,29 +31,43 @@ describe('axiosHandler', () => {
 
       // Then
       expect(axios).toHaveBeenLastCalledWith({
-        data: {"hello": "world"},
+        data: { "hello": "world" },
         headers: {},
         method: "get",
-        url: "http://localhost:3001/tasks"});
+        url: "http://localhost:3001/tasks"
+      });
+    });
+
+    it('should call the correct API status endpoint with undefined data when data not set', async () => {
+      // When
+      await axiosHandler('get', updateMock)(path);
+
+      // Then
+      expect(axios).toHaveBeenLastCalledWith({
+        headers: {},
+        method: "get",
+        url: "http://localhost:3001/tasks"
+      });
     });
 
     it('should call the correct API status endpoint', async () => {
       // Given
-      token.getAccessToken = jest.fn(() => 'access token')
+      token.getAccessToken = jest.fn(() => 'access token');
       // When
       await axiosHandler('get', updateMock)(path, data);
 
       // Then
       expect(axios).toHaveBeenLastCalledWith({
-        data: {"hello": "world"},
-        headers: {"Authorization": "Bearer access token"},
+        data: { "hello": "world" },
+        headers: { "Authorization": "Bearer access token" },
         method: "get",
-        url: "http://localhost:3001/tasks"});
+        url: "http://localhost:3001/tasks"
+      });
     });
 
     it('should return response data', async () => {
       // When
-      const response = await axiosHandler('get', updateMock)(path, data);
+      const response = await axiosHandler('get', x => x)(path, data);
 
       // Then
       expect(response).toEqual({ data });
