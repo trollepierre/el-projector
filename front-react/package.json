@@ -29,7 +29,7 @@
   "scripts": {
     "build": "react-scripts build",
     "start": "react-scripts start",
-    "test": "react-scripts test --watchAll=false",
+    "test": "react-scripts test --watchAll=false --coverage",
     "eject": "react-scripts eject",
     "clean": "rimraf dist && mkdirp dist",
     "lint": "eslint --ext .js,.vue src",
@@ -59,6 +59,18 @@
   "jest": {
     "snapshotSerializers": [
       "<rootDir>/node_modules/enzyme-to-json/serializer"
-    ]
+    ],
+    "resetMocks": true,
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      }
+    }
   }
 }
