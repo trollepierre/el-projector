@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '../../components';
-import { token } from '../../services';
+import { tokenService } from '../../services';
 import { useAppContext } from '../../app/AppContext';
 
 const Header = () => {
@@ -8,7 +8,7 @@ const Header = () => {
 
   const logout = () => {
     setIsAuthenticated(false)
-    return token.removeTokens();
+    return tokenService.removeTokens();
   }
 
   return (

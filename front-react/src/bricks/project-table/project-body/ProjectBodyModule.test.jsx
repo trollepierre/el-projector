@@ -10,8 +10,8 @@ describe('ProjectBodyModule', () => {
     jest
       .spyOn(AppContext, 'useAppContext')
       .mockImplementation(() => ({ loginSilently: jest.fn() }));
-
   });
+
   describe('template', () => {
     it('should match default snapshot', () => {
       // When

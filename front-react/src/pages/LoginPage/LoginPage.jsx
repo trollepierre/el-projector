@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import LoginForm from '../../bricks/LoginForm'
-import { token } from '../../services';
+import { tokenService } from '../../services';
 import { useAppContext } from '../../app/AppContext';
 
 const LoginPage = () => {
@@ -8,7 +8,7 @@ const LoginPage = () => {
 
   useEffect( () => {
     async function fetchIsAuth() {
-      return await token.isAuthenticated()
+      return await tokenService.isAuthenticated()
     }
     fetchIsAuth().then(isAuth => {
       if(isAuth) return setIsAuthenticated(isAuth);

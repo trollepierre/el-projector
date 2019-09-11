@@ -1,4 +1,4 @@
-import { logger, token } from '../index';
+import { loggerService, tokenService } from '../index';
 import axios from 'axios';
 
 const getApiUriToCall = path => {
@@ -11,12 +11,12 @@ const getAxiosConfiguration = ({ method, apiPath, data }) => ({
   method,
   data,
   headers: {
-    ...({ ...token.getAccessToken() ? { Authorization: `Bearer ${(token.getAccessToken())}` } : {} }),
+    ...({ ...tokenService.getAccessToken() ? { Authorization: `Bearer ${(tokenService.getAccessToken())}` } : {} }),
   },
 });
 
 const handleErrors = error => {
-  logger.error(error);
+  loggerService.error(error);
   throw error;
 };
 

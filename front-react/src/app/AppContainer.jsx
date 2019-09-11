@@ -5,7 +5,7 @@ import LoginPage from '../pages/LoginPage';
 import { Header } from '../bricks';
 import ProjectPage from '../pages/ProjectPage/ProjectPage';
 
-const AppContainer = () => {
+export const AppModule = () => {
   const { isAuthenticated } = useAppContext();
 
   if (!isAuthenticated) {
@@ -20,12 +20,10 @@ const AppContainer = () => {
   );
 };
 
-const AppModule = () => {
-  return (
-    <AppProvider>
-      <AppContainer/>
-    </AppProvider>
-  );
-};
+const AppContainer = () => (
+  <AppProvider>
+    <AppModule/>
+  </AppProvider>
+);
 
-export default AppModule;
+export default AppContainer;

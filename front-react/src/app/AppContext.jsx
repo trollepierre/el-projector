@@ -6,10 +6,10 @@ const AppContext = createContext();
 
 export const useAppContext = () => useContext(AppContext);
 
-const getProps = (state, dispatch) => ({
+export const getProps = (state, dispatch) => ({
   ...state,
   setIsAuthenticated: isAuthenticated => actions.setIsAuthenticated(isAuthenticated)(dispatch),
-  authenticate: value => actions.authenticate(value)(dispatch),
+  authenticate: password => actions.authenticate(password)(dispatch),
   loginSilently: () => actions.loginSilently()(dispatch),
 });
 

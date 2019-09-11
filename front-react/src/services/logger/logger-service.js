@@ -1,6 +1,8 @@
 function error(error) {
 // eslint-disable-next-line no-console
-  console.error(error.message)
+  if(process.env.NODE_ENV === 'development') {
+    console.error(error.message)
+  }
 }
 
 export default {
