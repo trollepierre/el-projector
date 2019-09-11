@@ -1,6 +1,6 @@
 import apiService from '../api-service';
 
-jest.mock('./api-handler', () => ({ axiosHandler: (method, update) => () => ({ method, update }) }));
+jest.mock('../api-handler', () => ({ axiosHandler: (method, update) => () => ({ method, update }) }));
 
 describe('apiService', () => {
   const givenPropsForRamda = { data: 'data', status: 'status' };
