@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-const { auth } = require('./index')
+const { auth } = require('../index')
 
 describe('auth', () => {
   let req

@@ -1,24 +1,22 @@
-const jwt = require('jsonwebtoken')
+const { saveTokens, generateAccessToken, generateRefreshToken } = require('../services/token-service')
 const { connect } = require('../connect')
+
+jest.mock('../services/token-service')
 
 describe('connect', () => {
   const user = {
     name: process.env.PASSWORD,
   }
-  const tokenList = []
-  beforeEach(() => {
-    jwt.sign = jest.fn()
-  })
 
   it('should return response with status, token and refresh token', () => {
     // Given
     const token = 'token'
     const refreshToken = 'refresh token'
-    jwt.sign.mockReturnValueOnce(token)
-    jwt.sign.mockReturnValueOnce(refreshToken)
+    generateAccessToken.mockReturnValueOnce(token)
+    generateRefreshToken.mockReturnValueOnce(refreshToken)
 
     // When
-    const response = connect({ user, tokenList })
+    const response = connect({ user })
 
     // Then
     expect(response).toEqual({
@@ -29,29 +27,26 @@ describe('connect', () => {
   })
 
   it('should call correctly jwt', () => {
-    // Given
-    jwt.sign = jest.fn()
-
     // When
-    connect({ user, tokenList })
+    connect({ user })
 
     // Then
-    expect(jwt.sign).toHaveBeenCalledWith(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 900 })
-    expect(jwt.sign).toHaveBeenLastCalledWith(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 86400 })
+    expect(generateAccessToken).toHaveBeenCalledWith(user)
+    expect(generateRefreshToken).toHaveBeenLastCalledWith(user)
   })
 
   it('should add refreshToken in tokensList', () => {
     // Given
     const token = 'token'
     const refreshToken = 'refresh token'
-    jwt.sign.mockReturnValueOnce(token)
-    jwt.sign.mockReturnValueOnce(refreshToken)
+    generateAccessToken.mockReturnValueOnce(token)
+    generateRefreshToken.mockReturnValueOnce(refreshToken)
 
     // When
-    connect({ user, tokenList })
+    connect({ user })
 
     // Then
-    expect(tokenList).toEqual([refreshToken])
+    expect(saveTokens).toHaveBeenCalledWith({ token, refreshToken })
   })
 
   it('should throw error when user name does not match password', () => {
@@ -61,7 +56,7 @@ describe('connect', () => {
 
     // When
     try {
-      connect({ user, tokenList })
+      connect({ user })
     } catch (err) {
       // Then
       expect(err.message).toEqual('Unauthorized')

@@ -1,7 +1,7 @@
 const { connect } = require('./connect')
-const { refreshToken } = require('./refresh-token')
+const { refreshAccessToken } = require('./refresh-access-token')
 
 module.exports = {
   connect,
-  refreshToken
+  refreshAccessToken,
 }
