@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ProjectBodyModule from './ProjectBodyModule';
-import { dummyTask } from '../../../utils/dummy-task';
-import * as AppContext from '../../../app/AppContext';
+import ProjectBodyModule from '../ProjectBodyModule';
+import { dummyTask } from '../../../../utils/dummy-task';
+import * as AppContext from '../../../../app/AppContext';
 
 describe('ProjectBodyModule', () => {
 
