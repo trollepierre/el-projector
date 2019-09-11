@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm should match snapshot 1`] = `
+<form
+  className="login-form"
+  onSubmit={[Function]}
+>
+  <Input
+    dataQa=""
+    disabled={false}
+    error=""
+    helper=""
+    hidden={false}
+    label=""
+    name="mot de passe"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    required={false}
+    reset={false}
+    reverse={false}
+    spellCheck={false}
+    touched={true}
+    type="text"
+    valid={false}
+    value=""
+  />
+  <Button
+    height={100}
+    onClick={[Function]}
+    text="Se Connect"
+    type="submit"
+  >
+    Se connecter
+  </Button>
+</form>
+`;
