@@ -5,8 +5,7 @@ export const FETCH_TASKS_STARTED = 'FETCH_TASKS_STARTED';
 export const FETCH_TASKS_SUCCEEDED = 'FETCH_TASKS_SUCCEEDED';
 export const FETCH_TASKS_FAILED = 'FETCH_TASKS_FAILED';
 
-const fetchTasks = (loginSilently, isCancelled) => async dispatch => {
-  if(isCancelled) return
+const fetchTasks = loginSilently => async dispatch => {
   dispatch({ type: FETCH_TASKS_STARTED });
   try {
     const data = await apiService.get('tasks');
@@ -19,14 +18,14 @@ const fetchTasks = (loginSilently, isCancelled) => async dispatch => {
   } catch (error) {
     if (error.message === 'Request failed with status code 401') {
       try {
-        console.log('inside fetch tasks');
         await loginSilently();
         return fetchTasks(loginSilently)(dispatch);
-      } catch (error) {
+      } catch (newError) {
         dispatch({
           type: FETCH_TASKS_FAILED,
-          error,
+          error: newError,
         });
+        return;
       }
     }
     dispatch({
@@ -84,6 +83,4 @@ export const actionHandlers = {
 export const reducer = withReducer(initialState, actionHandlers);
 
 export const tasksSelector = state => state.tasks;
-
-export default reducer;
 

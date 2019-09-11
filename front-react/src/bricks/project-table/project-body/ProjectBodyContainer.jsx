@@ -4,7 +4,7 @@ import { actions, initialState, reducer, tasksSelector } from './store';
 
 const ProjectBodyContainer = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const fetchTasks = (setIsAuthenticated) => actions.fetchTasks(setIsAuthenticated)(dispatch);
+  const fetchTasks = loginSilently => actions.fetchTasks(loginSilently)(dispatch);
 
   return <ProjectBodyModule tasks={tasksSelector(state)} fetchTasks={fetchTasks} />;
 };
