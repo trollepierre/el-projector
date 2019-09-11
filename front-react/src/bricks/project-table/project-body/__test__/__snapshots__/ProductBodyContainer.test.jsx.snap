@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectBodyContainer should match snapshot 1`] = `
+<ProjectBodyModule
+  fetchTasks={[Function]}
+  tasks={
+    Object {
+      "data": Array [],
+      "error": undefined,
+      "isLoading": false,
+    }
+  }
+/>
+`;
