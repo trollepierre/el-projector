@@ -4,12 +4,12 @@ import { tokenService } from '../../services';
 import { useAppContext } from '../../app/AppContext';
 
 const Header = () => {
-  const { setIsAuthenticated } = useAppContext()
+  const { setIsAuthenticated } = useAppContext();
 
   const logout = () => {
-    setIsAuthenticated(false)
-    return tokenService.removeTokens();
-  }
+    setIsAuthenticated(false);
+    tokenService.removeTokens()
+  };
 
   return (
     <nav className="header">

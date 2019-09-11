@@ -6,7 +6,7 @@ const LoginForm = () => {
   const { authenticate } = useAppContext()
   const input = React.createRef();
 
-  const handleSubmit = async event => {
+  const handleSubmit = event => {
     event.preventDefault()
     authenticate(input.current.value)
   }
