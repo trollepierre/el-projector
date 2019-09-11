@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppContainer AppContainer should match snapshot 1`] = `
+<AppProvider>
+  <AppModule />
+</AppProvider>
+`;
+
+exports[`AppContainer AppModule should match snapshot when authenticated 1`] = `
+<div
+  className="App"
+>
+  <Header />
+  <ProjectPage />
+</div>
+`;
+
+exports[`AppContainer AppModule should match snapshot when not authenticated 1`] = `<LoginPage />`;

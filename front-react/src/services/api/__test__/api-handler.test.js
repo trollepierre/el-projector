@@ -1,7 +1,7 @@
 // import env from '../../../env/env';
 import axios from 'axios';
 
-import { logger, token } from '../../index';
+import { loggerService, tokenService } from '../../index';
 import { axiosHandler } from '../api-handler';
 
 jest.mock('axios');
@@ -52,7 +52,7 @@ describe('axiosHandler', () => {
 
     it('should call the correct API status endpoint', async () => {
       // Given
-      token.getAccessToken = jest.fn(() => 'access token');
+      tokenService.getAccessToken = jest.fn(() => 'access token');
       // When
       await axiosHandler('get', updateMock)(path, data);
 
@@ -77,7 +77,7 @@ describe('axiosHandler', () => {
   describe('when the promise rejects', () => {
     beforeEach(() => {
       axios.mockRejectedValue('error');
-      logger.error = jest.fn();
+      loggerService.error = jest.fn();
     });
 
     it('should log the error', async () => {
@@ -86,7 +86,7 @@ describe('axiosHandler', () => {
         await axiosHandler('get', updateMock)(path, data);
       } catch (error) {
         // Then
-        expect(logger.error).toHaveBeenCalledWith('error');
+        expect(loggerService.error).toHaveBeenCalledWith('error');
         expect(error).toEqual('error');
       }
     });

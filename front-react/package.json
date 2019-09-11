@@ -62,7 +62,9 @@
     ],
     "resetMocks": true,
     "collectCoverageFrom": [
-      "src/**/*.js"
+      "src/**/*.{js,jsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/path/to/dir/"
     ],
     "coverageThreshold": {
       "global": {

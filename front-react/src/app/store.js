@@ -1,57 +1,42 @@
 import { withReducer } from '../store/withReducer';
-import { api, token, logger } from '../services';
+import { apiService, tokenService } from '../services';
 
 const SET_IS_AUTHENTICATED = 'app/SET_IS_AUTHENTICATED';
 
 const setIsAuthenticated = isAuthenticated => dispatch => {
-  console.log('alors');
-
-  console.log({ isAuthenticated});
-
   if(!isAuthenticated){
-    token.removeTokens()
+    tokenService.removeTokens()
   }
   return dispatch({
     type: SET_IS_AUTHENTICATED, payload: { isAuthenticated }
   });
 };
 
-const authenticate = value => async dispatch => {
+const authenticate = password => async dispatch => {
   try {
     const data = {
-      secret: value,
       email: 'some@example.org',
-      name: value
+      name: password
     };
-    const tokens = await api.post('login', data)
-    await token.saveUserTokens(tokens, data)
+    const tokens = await apiService.post('login', data)
+    await tokenService.saveUserTokens(tokens, data)
     dispatch({ type: SET_IS_AUTHENTICATED, payload: { isAuthenticated: true }})
   } catch (error) {
     dispatch({ type: SET_IS_AUTHENTICATED, payload: { isAuthenticated: false }})
-    logger.error(error.message);
     alert('wrong password')
   }
 }
 
 const loginSilently = () => async dispatch => {
   try {
-    const refreshToken = await token.getRefreshToken();
-    console.log({refreshToken});
+    const refreshToken = tokenService.getRefreshToken();
     if(!refreshToken) return;
-    console.log('1');
-    const tokens = await api.post('login/token', { refreshToken })
-    console.log('2');
-    await token.reauthenticate(tokens);
-    console.log('3');
+    const tokens = await apiService.post('login/token', { refreshToken })
+    await tokenService.reauthenticate(tokens);
     await dispatch({ type: SET_IS_AUTHENTICATED, payload: { isAuthenticated: true }})
-    console.log('4');
   } catch (error) {
-    console.log('5');
     await dispatch({ type: SET_IS_AUTHENTICATED, payload: { isAuthenticated: false }})
-    console.log('6');
-    logger.error(error.message);
-    console.log('7');
-    await token.removeTokens()
+    await tokenService.removeTokens()
     alert('problem during login silently')
     throw error
   }
