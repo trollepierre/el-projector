@@ -21,8 +21,6 @@ app.use(cors())
 app.use(express.static(path.join(__dirname, '..', 'front-react', 'build')))
 
 app.use('/login', loginRouter)
-// app.use(require('./src/routes/tokenChecker'))
-//
 app.use('/tasks', tasksRouter)
 app.use('/db', dbRouter)
 

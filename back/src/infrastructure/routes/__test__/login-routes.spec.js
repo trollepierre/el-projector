@@ -1,6 +1,6 @@
 const request = require('supertest')
 const app = require('../../../../app')
-const { connect, refreshToken } = require('../../../use_cases')
+const { connect, refreshAccessToken } = require('../../../use_cases')
 
 jest.mock('../../../use_cases')
 
@@ -14,7 +14,7 @@ describe('Integration | Routes | login route', () => {
       await request(app).post('/login').send({ email, name })
 
       // Then
-      expect(connect).toHaveBeenCalledWith({ user: { email, name }, tokenList: {} })
+      expect(connect).toHaveBeenCalledWith({ user: { email, name } })
     })
 
     it('should return response', async () => {
@@ -31,7 +31,7 @@ describe('Integration | Routes | login route', () => {
 
     it('should return error when connect throw error', async () => {
       // Given
-      connect.mockImplementation(() => {throw { message: 'message'}})
+      connect.mockImplementation(() => {throw { message: 'message' }})
 
       // When
       const response = await request(app).post('/login').send({ email, name })
@@ -50,12 +50,12 @@ describe('Integration | Routes | login route', () => {
       await request(app).post('/login/token').send({ email, name, refreshToken: givenRefreshToken })
 
       // Then
-      expect(refreshToken).toHaveBeenCalledWith({ user: { email, name }, tokenList: {}, refreshToken: givenRefreshToken })
+      expect(refreshAccessToken).toHaveBeenCalledWith({ user: { email, name }, refreshToken: givenRefreshToken })
     })
 
     it('should return response', async () => {
       // Given
-      refreshToken.mockImplementation(() => 'response')
+      refreshAccessToken.mockImplementation(() => 'response')
 
       // When
       const response = await request(app).post('/login/token').send({ email, name })
@@ -67,7 +67,7 @@ describe('Integration | Routes | login route', () => {
 
     it('should return error when refreshToken throw error', async () => {
       // Given
-      refreshToken.mockImplementation(() => {throw { message: 'message'}})
+      refreshAccessToken.mockImplementation(() => {throw { message: 'message' }})
 
       // When
       const response = await request(app).post('/login/token').send({ email, name })

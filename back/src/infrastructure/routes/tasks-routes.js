@@ -11,13 +11,8 @@ const { auth } = require('../services/auth')
 router.post('/', auth, (req, res) => addTask(req.body)
   .then(createdTask => res.send(createdTask)))
 
-router.get('/', auth, (req, res) => {
-  // eslint-disable-next-line no-console
-  console.log('oui tasks route est appelé')
-
-  return taskService.get()
-    .then(tasks => res.send(tasks))
-})
+router.get('/', auth, (req, res) => taskService.get()
+  .then(tasks => res.send(tasks)))
 
 router.get('/:id/meeting', auth, (req, res) => meetingService.add(req.params.id)
   .then(task => res.send(task)))

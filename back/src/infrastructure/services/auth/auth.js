@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken')
+const { verifyAccessToken } = require('../../../use_cases/services/token-service')
 
 function _extractAccessTokenFromAuthorizationHeader(authorizationHeader) {
   let accessToken
@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
     const accessToken = _extractAccessTokenFromAuthorizationHeader(req.headers.authorization)
 
     try {
-      const { email, userId } = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+      const { email, userId } = verifyAccessToken(accessToken)
       req.userId = userId
       req.userEmail = email
       next()
