@@ -1,66 +1,70 @@
 import canUseDOM from 'can-use-dom';
+import { getInLocalStorage, removeInLocalStorage, saveInLocalStorage } from '../window/window-service';
 
 export const ACCESS_TOKEN_STORAGE_KEY = 'access_token';
 export const REFRESH_TOKEN_STORAGE_KEY = 'refresh_token';
 export const AUTHENTICATED_USER_STORAGE_KEY = 'authenticated_user';
 
 function _saveAccessTokenIntoLocalStorage(accessToken) {
-  return canUseDOM ? window.localStorage.setItem(ACCESS_TOKEN_STORAGE_KEY, accessToken) : false;
+  return canUseDOM ? saveInLocalStorage(ACCESS_TOKEN_STORAGE_KEY, accessToken) : false;
 }
 
 function _saveRefreshTokenIntoLocalStorage(refreshToken) {
-  return canUseDOM ? window.localStorage.setItem(REFRESH_TOKEN_STORAGE_KEY, refreshToken) : false;
+  return canUseDOM ? saveInLocalStorage(REFRESH_TOKEN_STORAGE_KEY, refreshToken) : false;
 }
 
 function _removeItemFromLocalStorage(storageKey) {
-  return canUseDOM ? window.localStorage.removeItem(storageKey) : null;
+  return canUseDOM ? removeInLocalStorage(storageKey) : null;
+}
+
+const saveUserTokens = (tokens, data) => {
+  reauthenticate(tokens)
+
+  const authenticatedUser = {
+    name: data.name,
+    email: data.email,
+  };
+  if (canUseDOM) {
+    saveInLocalStorage(AUTHENTICATED_USER_STORAGE_KEY, JSON.stringify(authenticatedUser));
+  }
+}
+
+const reauthenticate = tokens => {
+  _saveAccessTokenIntoLocalStorage(tokens.token);
+  _saveRefreshTokenIntoLocalStorage(tokens.refreshToken)
+}
+
+const removeTokens = () => {
+  return new Promise((resolve) => {
+    _removeItemFromLocalStorage(ACCESS_TOKEN_STORAGE_KEY);
+    _removeItemFromLocalStorage(REFRESH_TOKEN_STORAGE_KEY);
+    _removeItemFromLocalStorage(AUTHENTICATED_USER_STORAGE_KEY);
+    resolve();
+  });
+}
+
+const isAuthenticated = () => {
+  return canUseDOM ? !!getInLocalStorage(ACCESS_TOKEN_STORAGE_KEY) : null;
+}
+
+const getAccessToken = () => {
+  return canUseDOM ? getInLocalStorage(ACCESS_TOKEN_STORAGE_KEY) : null;
+}
+
+const getRefreshToken = () => {
+  return canUseDOM ? getInLocalStorage(REFRESH_TOKEN_STORAGE_KEY) : null;
+}
+
+const getAuthenticatedUser = () => {
+  return canUseDOM ? JSON.parse(getInLocalStorage(AUTHENTICATED_USER_STORAGE_KEY)) : null;
 }
 
 export default {
-  saveUserTokens(tokens, data) {
-    _removeItemFromLocalStorage(ACCESS_TOKEN_STORAGE_KEY);
-
-    _saveAccessTokenIntoLocalStorage(tokens.token);
-    _saveRefreshTokenIntoLocalStorage(tokens.refreshToken)
-
-    const authenticatedUser = {
-      name: data.name,
-      secret: data.secret,
-      email: data.email,
-    };
-    window.localStorage.setItem(AUTHENTICATED_USER_STORAGE_KEY, JSON.stringify(authenticatedUser));
-  },
-
-  reauthenticate(tokens) {
-    _removeItemFromLocalStorage(ACCESS_TOKEN_STORAGE_KEY);
-
-    _saveAccessTokenIntoLocalStorage(tokens.token);
-    _saveRefreshTokenIntoLocalStorage(tokens.refreshToken)
-  },
-
-  getRefreshToken() {
-    return (canUseDOM) ? window.localStorage.getItem(REFRESH_TOKEN_STORAGE_KEY) : null;
-  },
-
-  removeTokens() {
-    return new Promise((resolve) => {
-      _removeItemFromLocalStorage(ACCESS_TOKEN_STORAGE_KEY);
-      _removeItemFromLocalStorage(REFRESH_TOKEN_STORAGE_KEY);
-      _removeItemFromLocalStorage(AUTHENTICATED_USER_STORAGE_KEY);
-      resolve();
-    });
-  },
-
-  isAuthenticated() {
-    return canUseDOM ? !!window.localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY) : null;
-  },
-
-  getAccessToken() {
-    return canUseDOM ? window.localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY) : null;
-  },
-
-  getAuthenticatedUser() {
-    return canUseDOM ? JSON.parse(window.localStorage.getItem(AUTHENTICATED_USER_STORAGE_KEY)) : null;
-  },
-
+  saveUserTokens,
+  reauthenticate,
+  getRefreshToken,
+  removeTokens,
+  isAuthenticated,
+  getAccessToken,
+  getAuthenticatedUser,
 };
