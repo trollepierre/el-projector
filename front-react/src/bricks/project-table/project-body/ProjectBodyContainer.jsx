@@ -1,12 +1,17 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import ProjectBodyModule from './ProjectBodyModule';
 import { actions, initialState, reducer, tasksSelector } from './store';
+import { useAppContext } from '../../../app/AppContext';
 
 const ProjectBodyContainer = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const fetchTasks = loginSilently => actions.fetchTasks(loginSilently)(dispatch);
+  const { loginSilently } = useAppContext()
 
-  return <ProjectBodyModule tasks={tasksSelector(state)} fetchTasks={fetchTasks} />;
+  useEffect(() => {
+    actions.fetchTasks(loginSilently)(dispatch)
+  }, [loginSilently]);
+
+  return <ProjectBodyModule tasks={tasksSelector(state)} />;
 };
 
 export default ProjectBodyContainer;
