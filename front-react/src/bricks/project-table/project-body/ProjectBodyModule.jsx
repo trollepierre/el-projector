@@ -1,22 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import TaskRaw from './task-raw/TaskRaw';
 import PropTypes from 'prop-types';
-import { useAppContext } from '../../../app/AppContext';
 
-const ProjectBodyModule = ({
-    tasks,
-    fetchTasks,
-  }) => {
+const ProjectBodyModule = ({ tasks }) => {
   const { data, isLoading, error } = tasks
-  const { loginSilently } = useAppContext()
-
-  useEffect(() => {
-    let isCancelled = false;
-    fetchTasks(loginSilently, isCancelled);
-    return () => {
-      isCancelled = true;
-    };
-  }, []);
 
   return (
   <tbody className="project-body">
@@ -45,7 +32,6 @@ ProjectBodyModule.propTypes = {
       })
     ),
   }),
-  fetchTasks: PropTypes.func.isRequired,
 };
 
 ProjectBodyModule.defaultProps = {
