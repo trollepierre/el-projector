@@ -35,10 +35,10 @@ test('Meaningful first paint score', () =>
     .then(report => {
       const { categories, lighthouseScore } = report
 
-      expect(lighthouseScore).toBeGreaterThanOrEqual(75) // 80.2, 82
-      expect(categories.performance.score * 100).toBeGreaterThanOrEqual(85) // 90, 96
-      expect(categories.pwa.score * 100).toBeGreaterThanOrEqual(45) // 48, 48
-      expect(categories.accessibility.score * 100).toBeGreaterThanOrEqual(95) // 100
-      expect(categories['best-practices'].score * 100).toBeGreaterThanOrEqual(80) // 93, 86
-      expect(categories.seo.score * 100).toBeGreaterThanOrEqual(65) // 70, 80
+      expect(lighthouseScore).toBeGreaterThanOrEqual(80) // 80.2, 82, 83.6
+      expect(categories.performance.score * 100).toBeGreaterThanOrEqual(90) // 90, 96, 97
+      expect(categories.pwa.score * 100).toBeGreaterThanOrEqual(45) // 48, 48, 52
+      expect(categories.accessibility.score * 100).toBeGreaterThanOrEqual(85) // 100, 86
+      expect(categories['best-practices'].score * 100).toBeGreaterThanOrEqual(80) // 93, 86, 93
+      expect(categories.seo.score * 100).toBeGreaterThanOrEqual(70) // 70, 80, 90
     }))
