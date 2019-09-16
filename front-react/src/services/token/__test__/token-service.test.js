@@ -1,4 +1,3 @@
-import canUseDOM from 'can-use-dom';
 import { tokenService } from '../../index';
 import { getInLocalStorage, removeInLocalStorage, saveInLocalStorage } from '../../window/window-service';
 
