@@ -5,7 +5,7 @@ const router = express.Router()
 const taskService = require('../../use_cases/task-service')
 const fileService = require('../services/file-service')
 const taskFixtures = require('./fixtures')
-const { formatDateWithInternationalLongDateTimeFormat } = require('../utils/date-utils')
+const { formatDateWithInternationalLongDateTimeFormat } = require('../../domain/utils/date-utils')
 
 router.get('/', (req, res) => {
   const now = formatDateWithInternationalLongDateTimeFormat(new Date())
