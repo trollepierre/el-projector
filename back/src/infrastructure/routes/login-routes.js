@@ -14,9 +14,9 @@ router.post('/', (req, res) => {
 })
 
 router.post('/token', (req, res) => {
-  const { email, name, refreshToken: token } = req.body
+  const { email, name, refreshToken } = req.body
   try {
-    const response = refreshAccessToken({ user: { email, name }, refreshToken: token })
+    const response = refreshAccessToken({ user: { email, name }, refreshToken })
     return res.status(200).json(response)
   } catch (error) {
     return res.status(403).send(error.message)
