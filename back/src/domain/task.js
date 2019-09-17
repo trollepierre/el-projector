@@ -1,5 +1,4 @@
 const { pick } = require('ramda')
-const { today } = require('./utils/date-utils')
 const { estimateOptimalDelay } = require('./hidden-domain/estimate-optimal-delay')
 const { adjustPoints } = require('./hidden-domain/adjust-points')
 const {
@@ -9,6 +8,7 @@ const {
   addDays,
   determineNextBirthday,
   parseDate,
+  today,
   isValid,
 } = require('./utils/date-utils')
 
