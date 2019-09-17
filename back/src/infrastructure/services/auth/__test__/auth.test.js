@@ -71,7 +71,7 @@ describe('auth', () => {
     auth(req, res, next)
 
     // Then
-    expect(jwt.verify).toHaveBeenCalledWith('token', undefined)
+    expect(jwt.verify).toHaveBeenCalledWith('token', 'jetondaccessecret')
   })
 
   it('should update req value', () => {

@@ -11,7 +11,9 @@
   },
   "coverageDirectory": "<rootDir>/test/coverage",
   "collectCoverageFrom": [
-    "src/**/*.js"
+    "src/**/*.js",
+    "!src/env/process.js",
+    "!**/node_modules/**"
   ],
   "setupFilesAfterEnv": ["<rootDir>/config/jest.setup.js"],
   "coverageThreshold": {
