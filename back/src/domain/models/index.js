@@ -3,17 +3,21 @@ const path = require('path')
 const Sequelize = require('sequelize')
 
 const basename = path.basename(__filename)
-const env = process.env.NODE_ENV || 'development'
-const config = require('../db/config.json')[env]
+const { env } = require( '../../infrastructure/env')
+
+const environment = env('NODE_ENV') || 'development'
+// eslint-disable-next-line no-console
+console.log({ environment })
+
+const config = require('../db/config.json')[environment]
 const { isProduction } = require( '../../infrastructure/env/process')
-const env2 = require( '../../infrastructure/env/env')
 
 const db = {}
 
 let sequelize
 
 if (isProduction()) {
-  sequelize = new Sequelize(env2('DATABASE_URL'))
+  sequelize = new Sequelize(env('DATABASE_URL'))
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config)
 }
