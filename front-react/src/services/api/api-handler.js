@@ -2,8 +2,9 @@ import { loggerService, tokenService } from '../index';
 import axios from 'axios';
 
 const getApiUriToCall = path => {
-  return `http://localhost:3001/${path}`;
-  // return `${env('API_URL')}${path}`
+  console.log(process.env.NODE_ENV);
+  if(process.env.NODE_ENV === 'production') return `${window.location.origin}/api/${path}`
+  return `http://localhost:3001/api/${path}`;
 };
 
 const getAxiosConfiguration = ({ method, apiPath, data }) => ({

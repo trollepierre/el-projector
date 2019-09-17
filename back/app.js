@@ -20,8 +20,8 @@ app.use(cors())
 
 app.use(express.static(path.join(__dirname, '..', 'front-react', 'build')))
 
-app.use('/login', loginRouter)
-app.use('/tasks', tasksRouter)
+app.use('/api/login', loginRouter)
+app.use('/api/tasks', tasksRouter)
 app.use('/db', dbRouter)
 
 // catch 404 and forward to error handler

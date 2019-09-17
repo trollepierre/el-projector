@@ -26,7 +26,7 @@ describe('Integration | Routes | tasks route', () => {
 
     it('should call task service to add task', async () => {
       // When
-      await request(app).post('/tasks').send({ task }).set('Authorization', 'Bearer access-token')
+      await request(app).post('/api/tasks').send({ task }).set('Authorization', 'Bearer access-token')
 
       // Then
       expect(addTask).toHaveBeenCalledWith({ task })
@@ -34,7 +34,7 @@ describe('Integration | Routes | tasks route', () => {
 
     it('should return tasks', async () => {
       // When
-      const response = await request(app).post('/tasks').set('Authorization', 'Bearer access-token')
+      const response = await request(app).post('/api/tasks').set('Authorization', 'Bearer access-token')
 
       // Then
       expect(response.statusCode).toBe(200)
@@ -50,7 +50,7 @@ describe('Integration | Routes | tasks route', () => {
 
     it('should call task service to add task', async () => {
       // When
-      await request(app).get('/tasks').set('Authorization', 'Bearer access-token')
+      await request(app).get('/api/tasks').set('Authorization', 'Bearer access-token')
 
       // Then
       expect(taskService.get).toHaveBeenCalledWith()
@@ -58,7 +58,7 @@ describe('Integration | Routes | tasks route', () => {
 
     it('should return tasks', async () => {
       // When
-      const response = await request(app).get('/tasks').set('Authorization', 'Bearer access-token')
+      const response = await request(app).get('/api/tasks').set('Authorization', 'Bearer access-token')
 
       // Then
       expect(response.statusCode).toBe(200)
@@ -74,7 +74,7 @@ describe('Integration | Routes | tasks route', () => {
 
     it('should call meeting service to add', async () => {
       // When
-      await request(app).get(`/tasks/${tasksId}/meeting`).set('Authorization', 'Bearer access-token')
+      await request(app).get(`/api/tasks/${tasksId}/meeting`).set('Authorization', 'Bearer access-token')
 
       // Then
       expect(meetingService.add).toHaveBeenCalledWith(tasksId)
@@ -82,7 +82,7 @@ describe('Integration | Routes | tasks route', () => {
 
     it('should return updated tasks', async () => {
       // When
-      const response = await request(app).get(`/tasks/${tasksId}/meeting`).set('Authorization', 'Bearer access-token')
+      const response = await request(app).get(`/api/tasks/${tasksId}/meeting`).set('Authorization', 'Bearer access-token')
 
       // Then
       expect(response.statusCode).toBe(200)
@@ -98,7 +98,7 @@ describe('Integration | Routes | tasks route', () => {
 
     it('should call differing meeting service', async () => {
       // When
-      await request(app).get(`/tasks/${tasksId}/meeting/differ`).set('Authorization', 'Bearer access-token')
+      await request(app).get(`/api/tasks/${tasksId}/meeting/differ`).set('Authorization', 'Bearer access-token')
 
       // Then
       expect(meetingService.differ).toHaveBeenCalledWith(tasksId)
@@ -106,7 +106,7 @@ describe('Integration | Routes | tasks route', () => {
 
     it('should return updated task', async () => {
       // When
-      const response = await request(app).get(`/tasks/${tasksId}/meeting/differ`).set('Authorization', 'Bearer access-token')
+      const response = await request(app).get(`/api/tasks/${tasksId}/meeting/differ`).set('Authorization', 'Bearer access-token')
 
       // Then
       expect(response.statusCode).toBe(200)
@@ -122,7 +122,7 @@ describe('Integration | Routes | tasks route', () => {
 
     it('should call rejecting meeting service', async () => {
       // When
-      await request(app).get(`/tasks/${tasksId}/meeting/reject`).set('Authorization', 'Bearer access-token')
+      await request(app).get(`/api/tasks/${tasksId}/meeting/reject`).set('Authorization', 'Bearer access-token')
 
       // Then
       expect(meetingService.reject).toHaveBeenCalledOnceWith(tasksId)
@@ -130,7 +130,7 @@ describe('Integration | Routes | tasks route', () => {
 
     it('should return updated task', async () => {
       // When
-      const response = await request(app).get(`/tasks/${tasksId}/meeting/reject`).set('Authorization', 'Bearer access-token')
+      const response = await request(app).get(`/api/tasks/${tasksId}/meeting/reject`).set('Authorization', 'Bearer access-token')
 
       // Then
       expect(response.statusCode).toBe(200)
@@ -148,7 +148,7 @@ describe('Integration | Routes | tasks route', () => {
       taskService.get.mockResolvedValue(tasks)
 
       // When
-      await request(app).get('/tasks/init').set('Authorization', 'Bearer access-token')
+      await request(app).get('/api/tasks/init').set('Authorization', 'Bearer access-token')
 
       // Then
       expect(taskService.get).toHaveBeenCalledOnceWith()
@@ -159,7 +159,7 @@ describe('Integration | Routes | tasks route', () => {
       taskService.get.mockResolvedValue(tasks)
 
       // When
-      const response = await request(app).get('/tasks/init').set('Authorization', 'Bearer access-token')
+      const response = await request(app).get('/api/tasks/init').set('Authorization', 'Bearer access-token')
 
       // Then
       expect(response.statusCode).toBe(401)
@@ -171,7 +171,7 @@ describe('Integration | Routes | tasks route', () => {
       taskService.get.mockResolvedValue([])
 
       // When
-      const response = await request(app).get('/tasks/init').set('Authorization', 'Bearer access-token')
+      const response = await request(app).get('/api/tasks/init').set('Authorization', 'Bearer access-token')
 
       // Then
       expect(response.statusCode).toBe(401)
@@ -187,7 +187,7 @@ describe('Integration | Routes | tasks route', () => {
 
     it('should call task service to delete', async () => {
       // When
-      await request(app).delete(`/tasks/${tasksId}`).set('Authorization', 'Bearer access-token')
+      await request(app).delete(`/api/tasks/${tasksId}`).set('Authorization', 'Bearer access-token')
 
       // Then
       expect(taskService.delete).toHaveBeenCalledWith(tasksId)
@@ -195,7 +195,7 @@ describe('Integration | Routes | tasks route', () => {
 
     it('should return 204 status', async () => {
       // When
-      const response = await request(app).delete(`/tasks/${tasksId}`).set('Authorization', 'Bearer access-token')
+      const response = await request(app).delete(`/api/tasks/${tasksId}`).set('Authorization', 'Bearer access-token')
 
       // Then
       expect(response.statusCode).toBe(204)
@@ -211,7 +211,7 @@ describe('Integration | Routes | tasks route', () => {
 
     it('should call task service to patch', async () => {
       // When
-      await request(app).patch(`/tasks/${tasksId}`).send({ task }).set('Authorization', 'Bearer access-token')
+      await request(app).patch(`/api/tasks/${tasksId}`).send({ task }).set('Authorization', 'Bearer access-token')
 
       // Then
       expect(taskService.update).toHaveBeenCalledWith(tasksId, { task })
@@ -219,7 +219,7 @@ describe('Integration | Routes | tasks route', () => {
 
     it('should return 204 status', async () => {
       // When
-      const response = await request(app).patch(`/tasks/${tasksId}`).set('Authorization', 'Bearer access-token')
+      const response = await request(app).patch(`/api/tasks/${tasksId}`).set('Authorization', 'Bearer access-token')
 
       // Then
       expect(response.statusCode).toBe(200)
