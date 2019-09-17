@@ -23,7 +23,7 @@ describe('auth', () => {
     expect(res.status).toHaveBeenCalledWith(401)
     expect(jsonMock).toHaveBeenCalledWith({
       error: {
-        msg: 'No token was provided!',
+        message: 'No token was provided!',
       },
     })
   })
@@ -39,7 +39,7 @@ describe('auth', () => {
     expect(res.status).toHaveBeenCalledWith(401)
     expect(jsonMock).toHaveBeenCalledWith({
       error: {
-        msg: 'No token was provided!',
+        message: 'No token was provided!',
       },
     })
   })
@@ -55,7 +55,7 @@ describe('auth', () => {
     expect(res.status).toHaveBeenCalledWith(401)
     expect(jsonMock).toHaveBeenCalledWith({
       error: {
-        msg: 'Failed to authenticate token!',
+        message: 'Failed to authenticate token!',
       },
     })
   })
