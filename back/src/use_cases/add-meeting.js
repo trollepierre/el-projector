@@ -1,4 +1,4 @@
-const { today } = require('../infrastructure/utils/date-utils')
+const { today } = require('../domain/utils/date-utils')
 
 const { get, update } = require('../domain/repositories/task-repository')
 const { enhance } = require('../domain/task')

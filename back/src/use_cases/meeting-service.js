@@ -1,4 +1,4 @@
-const { addDays, formatDateWithLittleEndianLongFormat, today } = require('../infrastructure/utils/date-utils')
+const { addDays, formatDateWithLittleEndianLongFormat, today } = require('../domain/utils/date-utils')
 const { calculateDiffer } = require('../domain/hidden-domain/estimate-optimal-delay')
 const { get, update } = require('../domain/repositories/task-repository')
 const { enhance } = require('../domain/task')
