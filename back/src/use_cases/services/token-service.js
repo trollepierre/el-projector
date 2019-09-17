@@ -1,10 +1,11 @@
 const jwt = require('jsonwebtoken')
+const { env } = require('../../infrastructure/env')
 
 const config = {
-  'secret': process.env.ACCESS_TOKEN_SECRET,
-  'refreshTokenSecret': process.env.REFRESH_TOKEN_SECRET,
-  'tokenLife': 900,
-  'refreshTokenLife': 86400,
+  'secret': env('ACCESS_TOKEN_SECRET'),
+  'refreshTokenSecret': env('REFRESH_TOKEN_SECRET'),
+  'tokenLife': env('ACCESS_TOKEN_LIFE_TIME'),
+  'refreshTokenLife': env('REFRESH_TOKEN_LIFE_TIME'),
 }
 
 const tokenList = {}
