@@ -30,7 +30,7 @@ router.get('/init', auth, (req, res) => taskService.get()
     }
     return Promise.all(taskFixtures.map(task => taskService.add(task)))
       .then(() => taskService.get())
-      .then(everyTask => res.send(everyTask))
+      .then(allTasks => res.send(allTasks))
   }))
 
 router.delete('/:id', auth, (req, res) => taskService.delete(req.params.id)
