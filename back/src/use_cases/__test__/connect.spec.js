@@ -1,11 +1,12 @@
 const { saveTokens, generateAccessToken, generateRefreshToken } = require('../services/token-service')
 const { connect } = require('../connect')
+const env = require('../../infrastructure/env/env')
 
 jest.mock('../services/token-service')
 
 describe('connect', () => {
   const user = {
-    name: process.env.PASSWORD,
+    name: env('PASSWORD'),
   }
 
   it('should return response with status, token and refresh token', () => {
