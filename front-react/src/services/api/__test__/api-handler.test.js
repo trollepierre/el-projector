@@ -1,18 +1,14 @@
-// import env from '../../../env/env';
 import axios from 'axios';
 
 import { loggerService, tokenService } from '../../index';
 import { axiosHandler } from '../api-handler';
 
 jest.mock('axios');
-jest.mock('../../../env/env');
 
 describe('axiosHandler', () => {
 
-  // const API_URL = 'http://localhost:3001/';
   const data = { hello: 'world' };
   const path = 'tasks';
-  // const url = `${API_URL}${path}`;
   let updateMock;
 
   beforeEach(() => {
@@ -21,7 +17,6 @@ describe('axiosHandler', () => {
 
   describe('when the promise resolves data', () => {
     beforeEach(() => {
-      // env.mockReturnValue(API_URL);
       axios.mockResolvedValue({ data });
     });
 
@@ -34,7 +29,7 @@ describe('axiosHandler', () => {
         data: { "hello": "world" },
         headers: {},
         method: "get",
-        url: "http://localhost:3001/tasks"
+        url: "http://localhost:3001/api/tasks"
       });
     });
 
@@ -46,13 +41,14 @@ describe('axiosHandler', () => {
       expect(axios).toHaveBeenLastCalledWith({
         headers: {},
         method: "get",
-        url: "http://localhost:3001/tasks"
+        url: "http://localhost:3001/api/tasks"
       });
     });
 
     it('should call the correct API status endpoint', async () => {
       // Given
       tokenService.getAccessToken = jest.fn(() => 'access token');
+
       // When
       await axiosHandler('get', updateMock)(path, data);
 
@@ -61,8 +57,28 @@ describe('axiosHandler', () => {
         data: { "hello": "world" },
         headers: { "Authorization": "Bearer access token" },
         method: "get",
-        url: "http://localhost:3001/tasks"
+        url: "http://localhost:3001/api/tasks"
       });
+    });
+
+    it('should call the correct API status endpoint in production', async () => {
+      // Given
+      tokenService.getAccessToken = jest.fn(() => 'access token');
+      process.env.NODE_ENV = 'production'
+
+      // When
+      await axiosHandler('get', updateMock)(path, data);
+
+      // Then
+      expect(axios).toHaveBeenLastCalledWith({
+        data: { "hello": "world" },
+        headers: { "Authorization": "Bearer access token" },
+        method: "get",
+        url: "http://localhost/api/tasks"
+      });
+
+      // After
+      process.env.NODE_ENV = 'test'
     });
 
     it('should return response data', async () => {

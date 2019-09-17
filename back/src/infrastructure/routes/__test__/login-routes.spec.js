@@ -11,7 +11,7 @@ describe('Integration | Routes | login route', () => {
   describe('#POST /login', () => {
     it('should call connect with user and tokenlist', async () => {
       // When
-      await request(app).post('/login').send({ email, name })
+      await request(app).post('/api/login').send({ email, name })
 
       // Then
       expect(connect).toHaveBeenCalledWith({ user: { email, name } })
@@ -22,7 +22,7 @@ describe('Integration | Routes | login route', () => {
       connect.mockImplementation(() => 'response')
 
       // When
-      const response = await request(app).post('/login').send({ email, name })
+      const response = await request(app).post('/api/login').send({ email, name })
 
       // Then
       expect(response.statusCode).toBe(200)
@@ -34,7 +34,7 @@ describe('Integration | Routes | login route', () => {
       connect.mockImplementation(() => {throw { message: 'message' }})
 
       // When
-      const response = await request(app).post('/login').send({ email, name })
+      const response = await request(app).post('/api/login').send({ email, name })
 
       // Then
       expect(response.statusCode).toBe(401)
@@ -47,7 +47,7 @@ describe('Integration | Routes | login route', () => {
 
     it('should call connect with user and tokenlist', async () => {
       // When
-      await request(app).post('/login/token').send({ email, name, refreshToken: givenRefreshToken })
+      await request(app).post('/api/login/token').send({ email, name, refreshToken: givenRefreshToken })
 
       // Then
       expect(refreshAccessToken).toHaveBeenCalledWith({ user: { email, name }, refreshToken: givenRefreshToken })
@@ -58,7 +58,7 @@ describe('Integration | Routes | login route', () => {
       refreshAccessToken.mockImplementation(() => 'response')
 
       // When
-      const response = await request(app).post('/login/token').send({ email, name })
+      const response = await request(app).post('/api/login/token').send({ email, name })
 
       // Then
       expect(response.statusCode).toBe(200)
@@ -70,7 +70,7 @@ describe('Integration | Routes | login route', () => {
       refreshAccessToken.mockImplementation(() => {throw { message: 'message' }})
 
       // When
-      const response = await request(app).post('/login/token').send({ email, name })
+      const response = await request(app).post('/api/login/token').send({ email, name })
 
       // Then
       expect(response.statusCode).toBe(403)
