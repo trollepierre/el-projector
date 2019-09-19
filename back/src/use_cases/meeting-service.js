@@ -16,7 +16,7 @@ async function differ(id) {
   const task = await get(id)
   const { adjustedPoints } = enhance(task)
   const minNext = formatDateWithLittleEndianLongFormat(addDays(7)(new Date()))
-  const updatedTask = await update(id, { points: adjustedPoints, minNext } )
+  const updatedTask = await update(id, { points: adjustedPoints, minNext })
   return enhance(updatedTask)
 }
 
@@ -26,7 +26,7 @@ async function reject(id) {
   const points = Math.round(adjustedPoints * 0.75)
   const numberOfDaysToDiffer = calculateDiffer(points)
   const minNext = formatDateWithLittleEndianLongFormat(addDays(numberOfDaysToDiffer)(new Date()))
-  const updatedTask = await update(id, { points, minNext } )
+  const updatedTask = await update(id, { points, minNext })
   return enhance(updatedTask)
 }
 

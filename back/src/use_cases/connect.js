@@ -13,7 +13,7 @@ const connect = ({ user }) => {
   saveTokens({ token, refreshToken })
 
   return {
-    'status': 'Logged in',
+    status: 'Logged in',
     token,
     refreshToken,
   }

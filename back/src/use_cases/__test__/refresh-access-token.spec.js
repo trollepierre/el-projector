@@ -14,7 +14,7 @@ describe('refreshAccessToken', () => {
     isValidRefreshToken.mockReturnValue(true)
 
     // When
-    const response = refreshAccessToken({ refreshToken: refreshToken, user })
+    const response = refreshAccessToken({ refreshToken, user })
 
     // Then
     expect(response).toEqual({

@@ -2,7 +2,9 @@
 const { map } = require('ramda')
 const { enhance } = require('../domain/task')
 const { today } = require('../domain/utils/date-utils')
-const { getAll, create, update, delete: deleteTask } = require('../domain/repositories/task-repository')
+const {
+  getAll, create, update, delete: deleteTask,
+} = require('../domain/repositories/task-repository')
 
 async function add(task) {
   const taskWithPoints = task.points ? task : { ...task, points: 50 }

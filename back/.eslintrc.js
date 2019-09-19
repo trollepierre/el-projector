@@ -4,15 +4,16 @@ module.exports = {
     'jest/globals': true,
   },
   extends: [
+    'airbnb-base',
     '../.eslintrc.js',
   ],
   plugins: [
     'jest',
   ],
   rules: {
-    /* YPAM custom rules */
     'arrow-body-style': ['error', 'as-needed'],
     'arrow-parens': ['error', 'as-needed'],
     'indent': ['error', 2],
+    'max-len': 'off'
   },
 }

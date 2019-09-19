@@ -4,7 +4,7 @@ const ACCEPTABLE_NUMBER_OF_DAYS_IN_LATE = 7
 const MINIMUM_AMOUNT_OF_POINTS_LEFT = 1
 const MAXIMUM_NUMBER_OF_DAYS_IN_LATE = 365
 
-const calculatePenaltyAdjustment = (penaltyDelay, optimalRelationshipDelay) => Math.exp(-penaltyDelay * 0.04 / optimalRelationshipDelay - penaltyDelay / MAXIMUM_NUMBER_OF_DAYS_IN_LATE)
+const calculatePenaltyAdjustment = (penaltyDelay, optimalRelationshipDelay) => Math.exp(-penaltyDelay * 0.04 / optimalRelationshipDelay - penaltyDelay / MAXIMUM_NUMBER_OF_DAYS_IN_LATE) // eslint-disable-line no-mixed-operators
 
 const adjustPoints = (nextMeetingDate, points, optimalRelationshipDelay) => {
   const penaltyDelay = numberOfDaysInLate(nextMeetingDate) - ACCEPTABLE_NUMBER_OF_DAYS_IN_LATE

@@ -3,14 +3,14 @@ const path = require('path')
 const Sequelize = require('sequelize')
 
 const basename = path.basename(__filename)
-const { env } = require( '../../infrastructure/env')
+const { env } = require('../../infrastructure/env')
 
 const environment = env('NODE_ENV') || 'development'
 // eslint-disable-next-line no-console
 console.log({ environment })
 
 const config = require('../db/config.json')[environment]
-const { isProduction } = require( '../../infrastructure/env/process')
+const { isProduction } = require('../../infrastructure/env/process')
 
 const db = {}
 

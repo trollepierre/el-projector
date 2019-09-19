@@ -18,8 +18,8 @@ const numberOfDaysInLate = date => differenceInCalendarDays(date)(new Date())
 const parseDate = date => parse(date, 'dd/MM/yyyy', new Date())
 const formatDateWithLittleEndianLongFormat = ifElse(isNil, () => '', formatDate('dd/MM/yyyy'))
 const formatDateWithInternationalLongDateTimeFormat = formatDate('yyyy-MM-dd:HH:mm:ss')
-const earliestDate = (firstDate, secondDate) => isAfter(firstDate)(secondDate) ? firstDate : secondDate
-const latestDate = (firstDate, secondDate) => isBefore(firstDate)(secondDate) ? firstDate : secondDate
+const earliestDate = (firstDate, secondDate) => (isAfter(firstDate)(secondDate) ? firstDate : secondDate)
+const latestDate = (firstDate, secondDate) => (isBefore(firstDate)(secondDate) ? firstDate : secondDate)
 
 const today = () => formatDateWithLittleEndianLongFormat(new Date())
 

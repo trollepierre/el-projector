@@ -48,19 +48,19 @@ describe('Unit | Domain | task', () => {
       const enhancedTask = enhance(task)
 
       // Then
-      expect(enhancedTask).toEqual( {
-        'address': '',
-        'adjustedPoints': 1,
-        'birthDate': '',
-        'country': '',
-        'firstName': 'Arthur',
-        'lastDate': '04/11/1996',
-        'lastName': 'King',
-        'next': '05/11/1996',
-        'nextBirthday': '',
-        'nextMeetingDate': '05/11/1996',
-        'origin': '',
-        'points': 999,
+      expect(enhancedTask).toEqual({
+        address: '',
+        adjustedPoints: 1,
+        birthDate: '',
+        country: '',
+        firstName: 'Arthur',
+        lastDate: '04/11/1996',
+        lastName: 'King',
+        next: '05/11/1996',
+        nextBirthday: '',
+        nextMeetingDate: '05/11/1996',
+        origin: '',
+        points: 999,
       })
     })
 
@@ -72,19 +72,19 @@ describe('Unit | Domain | task', () => {
       const enhancedTask = enhance(task)
 
       // Then
-      expect(enhancedTask).toEqual( {
-        'address': '',
-        'adjustedPoints': 999,
-        'birthDate': '19/10/1991',
-        'country': '',
-        'firstName': 'Arthur',
-        'lastDate': '15/07/2018',
-        'lastName': 'King',
-        'next': '16/07/2018',
-        'nextBirthday': '19/10/2018',
-        'nextMeetingDate': '16/07/2018',
-        'origin': '',
-        'points': 999,
+      expect(enhancedTask).toEqual({
+        address: '',
+        adjustedPoints: 999,
+        birthDate: '19/10/1991',
+        country: '',
+        firstName: 'Arthur',
+        lastDate: '15/07/2018',
+        lastName: 'King',
+        next: '16/07/2018',
+        nextBirthday: '19/10/2018',
+        nextMeetingDate: '16/07/2018',
+        origin: '',
+        points: 999,
       })
     })
 
@@ -96,19 +96,19 @@ describe('Unit | Domain | task', () => {
       const enhancedTask = enhance(task)
 
       // Then
-      expect(enhancedTask).toEqual( {
-        'address': '',
-        'adjustedPoints': 100,
-        'birthDate': '23/07/1991',
-        'country': '',
-        'firstName': 'Arthur',
-        'lastDate': '15/07/2018',
-        'lastName': 'King',
-        'next': '23/07/2018',
-        'nextBirthday': '23/07/2018',
-        'nextMeetingDate': '13/09/2018',
-        'origin': '',
-        'points': 100,
+      expect(enhancedTask).toEqual({
+        address: '',
+        adjustedPoints: 100,
+        birthDate: '23/07/1991',
+        country: '',
+        firstName: 'Arthur',
+        lastDate: '15/07/2018',
+        lastName: 'King',
+        next: '23/07/2018',
+        nextBirthday: '23/07/2018',
+        nextMeetingDate: '13/09/2018',
+        origin: '',
+        points: 100,
       })
     })
   })

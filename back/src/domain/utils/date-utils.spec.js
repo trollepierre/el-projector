@@ -1,5 +1,7 @@
 const lolex = require('lolex')
-const { numberOfDaysInLate, formatDateWithInternationalLongDateTimeFormat, isValid, determineNextBirthday, earliestDate, isToday, latestDate, parseDate, today, formatDateWithLittleEndianLongFormat } = require('./date-utils')
+const {
+  numberOfDaysInLate, formatDateWithInternationalLongDateTimeFormat, isValid, determineNextBirthday, earliestDate, isToday, latestDate, parseDate, today, formatDateWithLittleEndianLongFormat,
+} = require('./date-utils')
 
 describe('Unit | Utils | date-utils', () => {
   const now = '2018-07-21T10:00:00'

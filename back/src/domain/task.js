@@ -22,7 +22,7 @@ const determinenextMeetingDatesToKit = (birthDate, regularMeetingDate) => {
   if (isValid(birthDate)) {
     const nextBirthday = determineNextBirthday(birthDate)
     return {
-      nextBirthday: nextBirthday,
+      nextBirthday,
       nextMeetingDate: regularMeetingDate,
       nextDateToKit: earliestDate(nextBirthday, regularMeetingDate),
     }
@@ -41,7 +41,9 @@ const determineNextOccasionToMeet = (delay, lastDate, birthDate) => {
 
 const enhance = taskFromDb => {
   const task = pick(['id', 'firstName', 'lastName', 'points', 'lastDate', 'minNext', 'birthDate', 'origin', 'country', 'address'])(taskFromDb)
-  const { points, lastDate, birthDate, minNext } = task
+  const {
+    points, lastDate, birthDate, minNext,
+  } = task
   const optimalRelationshipDelay = estimateOptimalDelay(points)
   const { nextDateToKit, nextBirthday, nextMeetingDate } = determineNextOccasionToMeet(optimalRelationshipDelay, lastDate, birthDate)
   const next = minNext ? latestDate(nextDateToKit, parseDate(minNext)) : nextDateToKit
