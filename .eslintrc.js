@@ -21,7 +21,7 @@ module.exports = {
     'comma-dangle': ['error', 'always-multiline'],
     'comma-spacing': 'error',
     'eol-last': 'error',
-    'import/prefer-default-export': null,
+    'import/prefer-default-export': 0,
     'key-spacing': 'error',
     'no-multi-spaces': 'error',
     'no-multiple-empty-lines': ['error', { 'max': 1 }],

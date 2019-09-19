@@ -1,43 +1,43 @@
-import apiService from '../../../services/api/api-service';
-import { withReducer } from '../../../store/withReducer';
+import apiService from '../../../services/api/api-service'
+import { withReducer } from '../../../store/withReducer'
 
-export const FETCH_TASKS_STARTED = 'FETCH_TASKS_STARTED';
-export const FETCH_TASKS_SUCCEEDED = 'FETCH_TASKS_SUCCEEDED';
-export const FETCH_TASKS_FAILED = 'FETCH_TASKS_FAILED';
+export const FETCH_TASKS_STARTED = 'FETCH_TASKS_STARTED'
+export const FETCH_TASKS_SUCCEEDED = 'FETCH_TASKS_SUCCEEDED'
+export const FETCH_TASKS_FAILED = 'FETCH_TASKS_FAILED'
 
 const fetchTasks = loginSilently => async dispatch => {
-  dispatch({ type: FETCH_TASKS_STARTED });
+  dispatch({ type: FETCH_TASKS_STARTED })
   try {
-    const data = await apiService.get('tasks');
+    const data = await apiService.get('tasks')
 
     dispatch({
       type: FETCH_TASKS_SUCCEEDED,
       payload: data,
-    });
+    })
 
   } catch (error) {
     if (error.message === 'Request failed with status code 401') {
       try {
-        await loginSilently();
-        return fetchTasks(loginSilently)(dispatch);
+        await loginSilently()
+        return fetchTasks(loginSilently)(dispatch)
       } catch (newError) {
         dispatch({
           type: FETCH_TASKS_FAILED,
           error: newError,
-        });
-        return;
+        })
+        return
       }
     }
     dispatch({
       type: FETCH_TASKS_FAILED,
       error,
-    });
+    })
   }
-};
+}
 
 export const actions = {
   fetchTasks,
-};
+}
 
 export const initialState = {
   tasks: {
@@ -45,7 +45,7 @@ export const initialState = {
     isLoading: false,
     error: undefined,
   },
-};
+}
 
 export const actionHandlers = {
   [FETCH_TASKS_STARTED]: state => {
@@ -56,7 +56,7 @@ export const actionHandlers = {
         error: undefined,
         isLoading: true,
       },
-    };
+    }
   },
   [FETCH_TASKS_SUCCEEDED]: (state, action) => {
     return {
@@ -66,7 +66,7 @@ export const actionHandlers = {
         error: undefined,
         isLoading: false,
       },
-    };
+    }
   },
   [FETCH_TASKS_FAILED]: (state, action) => {
     return {
@@ -76,11 +76,11 @@ export const actionHandlers = {
         error: action.error,
         isLoading: false,
       },
-    };
+    }
   },
-};
+}
 
-export const reducer = withReducer(initialState, actionHandlers);
+export const reducer = withReducer(initialState, actionHandlers)
 
-export const tasksSelector = state => state.tasks;
+export const tasksSelector = state => state.tasks
 
