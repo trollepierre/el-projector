@@ -31,7 +31,7 @@ describe('Integration | Routes | login route', () => {
 
     it('should return error when connect throw error', async () => {
       // Given
-      connect.mockImplementation(() => {throw { message: 'message' }})
+      connect.mockImplementation(() => { throw { message: 'message' } }) // eslint-disable-line no-throw-literal
 
       // When
       const response = await request(app).post('/api/login').send({ email, name })
@@ -67,7 +67,7 @@ describe('Integration | Routes | login route', () => {
 
     it('should return error when refreshToken throw error', async () => {
       // Given
-      refreshAccessToken.mockImplementation(() => {throw { message: 'message' }})
+      refreshAccessToken.mockImplementation(() => { throw { message: 'message' } }) // eslint-disable-line no-throw-literal
 
       // When
       const response = await request(app).post('/api/login/token').send({ email, name })

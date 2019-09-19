@@ -7,7 +7,7 @@ const refreshAccessToken = ({ refreshToken, user }) => {
   const token = generateAccessToken(user)
   saveTokens({ token, refreshToken })
   return {
-    'status': 're-Logged in',
+    status: 're-Logged in',
     token,
     refreshToken,
   }
