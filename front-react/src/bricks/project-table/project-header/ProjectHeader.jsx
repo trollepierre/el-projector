@@ -1,5 +1,5 @@
-import React from 'react';
-import Button from '../../../components/Button/Button';
+import React from 'react'
+import { Button } from '../../../components'
 import {
   sortByBirthday,
   sortByFirstName,
@@ -8,9 +8,9 @@ import {
   sortByNext,
   sortByOrigin,
   sortByPoints,
-} from '../services/tasks-sorter';
+} from '../services/tasks-sorter'
 // eslint-disable-next-line no-unused-vars
-import styles from './ProjectHeader.css';
+import styles from './ProjectHeader.css'
 
 const ProjectHeader = () => (
   <thead className="project-header">
@@ -87,6 +87,6 @@ const ProjectHeader = () => (
     </th>
   </tr>
   </thead>
-);
+)
 
-export default ProjectHeader;
+export default ProjectHeader

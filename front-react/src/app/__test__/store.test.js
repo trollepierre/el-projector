@@ -35,7 +35,7 @@ describe('store', () => {
           expect(action).toEqual('dispatchReturn')
         })
 
-        it('should call remove token service', () => {
+        it('should not call remove token service', () => {
           // Given
           const dispatch = jest.fn(() => 'dispatchReturn')
           tokenService.removeTokens = jest.fn()
@@ -165,7 +165,7 @@ describe('store', () => {
           tokenService.getRefreshToken = jest.fn()
         })
 
-        it('should return nothing when no refresh token found', () => {
+        it('should not call api service post', () => {
           // When
           actions.loginSilently()(dispatch)
 
@@ -212,8 +212,7 @@ describe('store', () => {
 
       describe('failure case', () => {
         beforeEach(() => {
-          apiService.post = jest.fn()
-          apiService.post.mockRejectedValue('error')
+          apiService.post = jest.fn().mockRejectedValue('error')
           window.alert = jest.fn()
           tokenService.getRefreshToken = jest.fn().mockReturnValue(refreshToken)
         })

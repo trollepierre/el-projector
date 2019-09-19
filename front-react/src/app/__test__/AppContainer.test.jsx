@@ -35,7 +35,6 @@ describe('AppContainer', () => {
 
   describe('AppContainer', () => {
     it('should match snapshot', () => {
-      // Given
       // When
       const wrapper = shallow(<AppContainer/>);
 

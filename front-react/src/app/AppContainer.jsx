@@ -1,14 +1,14 @@
-import React from 'react';
-import { AppProvider, useAppContext } from './AppContext';
+import React from 'react'
+import { AppProvider, useAppContext } from './AppContext'
 
-import { LoginPage, ProjectPage } from '../pages';
-import { Header } from '../bricks';
+import { LoginPage, ProjectPage } from '../pages'
+import { Header } from '../bricks'
 
 export const AppModule = () => {
-  const { isAuthenticated } = useAppContext();
+  const { isAuthenticated } = useAppContext()
 
   if (!isAuthenticated) {
-    return (<LoginPage/>);
+    return <LoginPage/>
   }
 
   return (
@@ -16,13 +16,13 @@ export const AppModule = () => {
       <Header/>
       <ProjectPage/>
     </div>
-  );
-};
+  )
+}
 
 const AppContainer = () => (
   <AppProvider>
     <AppModule/>
   </AppProvider>
-);
+)
 
-export default AppContainer;
+export default AppContainer

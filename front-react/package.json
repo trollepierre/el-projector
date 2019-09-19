@@ -46,7 +46,9 @@
       "react-app"
     ],
     "rules": {
-      "no-unused-vars": "error"
+      "import/no-unresolved": "off",
+      "no-unused-vars": "error",
+      "semi": ["error", "never"]
     }
   },
   "browserslist": {

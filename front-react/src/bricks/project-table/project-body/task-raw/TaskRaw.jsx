@@ -1,7 +1,7 @@
-import React from 'react';
-import Button from '../../../../components/Button/Button';
+import React from 'react'
+import { Button } from '../../../../components'
 // eslint-disable-next-line no-unused-vars
-import { eliminate, differ, remove } from '../../services/task-edit';
+import { eliminate, differ, remove } from '../../services/task-edit'
 // eslint-disable-next-line no-unused-vars
 import styles from './TaskRaw.css'
 
@@ -72,6 +72,6 @@ import styles from './TaskRaw.css'
      {/*  />*/}
      {/*</td>*/}
    </tr>
- );
+ )
 
-export default TaskRaw;
+export default TaskRaw
