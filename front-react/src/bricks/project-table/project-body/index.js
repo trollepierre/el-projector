@@ -1,3 +1,3 @@
-import ProjectBodyContainer from './ProjectBodyContainer';
+import ProjectBodyContainer from './ProjectBodyContainer'
 
-export default ProjectBodyContainer;
+export default ProjectBodyContainer

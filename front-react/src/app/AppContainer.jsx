@@ -1,9 +1,8 @@
 import React from 'react';
 import { AppProvider, useAppContext } from './AppContext';
 
-import LoginPage from '../pages/LoginPage';
+import { LoginPage, ProjectPage } from '../pages';
 import { Header } from '../bricks';
-import ProjectPage from '../pages/ProjectPage/ProjectPage';
 
 export const AppModule = () => {
   const { isAuthenticated } = useAppContext();
