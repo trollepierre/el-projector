@@ -4,8 +4,8 @@ const { env } = require('../../infrastructure/env')
 const config = {
   'secret': env('ACCESS_TOKEN_SECRET'),
   'refreshTokenSecret': env('REFRESH_TOKEN_SECRET'),
-  'tokenLife': env('ACCESS_TOKEN_LIFE_TIME'),
-  'refreshTokenLife': env('REFRESH_TOKEN_LIFE_TIME'),
+  'tokenLife': parseInt(env('ACCESS_TOKEN_LIFE_TIME'), 10),
+  'refreshTokenLife': parseInt(env('REFRESH_TOKEN_LIFE_TIME'), 10),
 }
 
 const tokenList = {}
