@@ -1,7 +1,6 @@
 module.exports = {
   root: true,
   extends: [
-    'airbnb-base',
     'eslint:recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
