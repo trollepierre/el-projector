@@ -32,6 +32,6 @@ module.exports = (req, res, next) => {
         message: 'No token was provided!',
       },
     })
-    next()
+    next(new Error('No token was provided!'))
   }
 }

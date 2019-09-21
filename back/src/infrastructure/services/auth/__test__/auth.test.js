@@ -26,6 +26,7 @@ describe('auth', () => {
         message: 'No token was provided!',
       },
     })
+    expect(next).toHaveBeenCalled()
   })
 
   it('should return error when headers authorization not set', () => {
@@ -42,6 +43,7 @@ describe('auth', () => {
         message: 'No token was provided!',
       },
     })
+    expect(next).toHaveBeenCalled()
   })
 
   it('should return error when headers jwt verify crashes', () => {
@@ -58,6 +60,7 @@ describe('auth', () => {
         message: 'Failed to authenticate token!',
       },
     })
+    expect(next).toHaveBeenCalled()
   })
 
   it('should verify jwt with correct access token', () => {
