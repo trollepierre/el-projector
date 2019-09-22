@@ -24,3 +24,4 @@ back/.nyc_output
 reports
 build
 front-vuejs
+front-react/.stryker-tmp
