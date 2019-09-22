@@ -10,7 +10,6 @@ import {
 import { apiService } from '../../../../services'
 
 describe('store', () => {
-
   describe('initialState', () => {
     it('should contain no data', () => {
       // Then
@@ -150,18 +149,17 @@ describe('store', () => {
       const state = { foo: 'bar', tasks: { data: ['tasks'] } }
 
       // When
-      const returnedState = actionHandlers['FETCH_TASKS_STARTED'](state)
+      const returnedState = actionHandlers.FETCH_TASKS_STARTED(state)
 
       // Then
       expect(returnedState).toEqual({
-          foo: 'bar',
-          tasks: {
-            data: ['tasks'],
-            error: undefined,
-            isLoading: true,
-          },
-        }
-      )
+        foo: 'bar',
+        tasks: {
+          data: ['tasks'],
+          error: undefined,
+          isLoading: true,
+        },
+      })
     })
 
     it('should update FETCH_TASKS_SUCCEEDED', () => {
@@ -170,18 +168,17 @@ describe('store', () => {
       const action = { payload: 'data' }
 
       // When
-      const returnedState = actionHandlers['FETCH_TASKS_SUCCEEDED'](state, action)
+      const returnedState = actionHandlers.FETCH_TASKS_SUCCEEDED(state, action)
 
       // Then
       expect(returnedState).toEqual({
-          foo: 'bar',
-          tasks: {
-            data: 'data',
-            error: undefined,
-            isLoading: false,
-          },
-        }
-      )
+        foo: 'bar',
+        tasks: {
+          data: 'data',
+          error: undefined,
+          isLoading: false,
+        },
+      })
     })
 
     it('should update FETCH_TASKS_FAILED', () => {
@@ -190,18 +187,17 @@ describe('store', () => {
       const action = { error: 'error' }
 
       // When
-      const returnedState = actionHandlers['FETCH_TASKS_FAILED'](state, action)
+      const returnedState = actionHandlers.FETCH_TASKS_FAILED(state, action)
 
       // Then
       expect(returnedState).toEqual({
-          foo: 'bar',
-          tasks: {
-            data: ['tasks'],
-            error: 'error',
-            isLoading: false,
-          },
-        }
-      )
+        foo: 'bar',
+        tasks: {
+          data: ['tasks'],
+          error: 'error',
+          isLoading: false,
+        },
+      })
     })
   })
 })

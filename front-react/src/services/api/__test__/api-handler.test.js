@@ -6,7 +6,6 @@ import { axiosHandler } from '../api-handler'
 jest.mock('axios')
 
 describe('axiosHandler', () => {
-
   const data = { hello: 'world' }
   const path = 'tasks'
   let updateMock
@@ -26,7 +25,7 @@ describe('axiosHandler', () => {
 
       // Then
       expect(axios).toHaveBeenLastCalledWith({
-        data: { 'hello': 'world' },
+        data: { hello: 'world' },
         headers: {},
         method: 'get',
         url: 'http://localhost:3001/api/tasks',
@@ -54,8 +53,8 @@ describe('axiosHandler', () => {
 
       // Then
       expect(axios).toHaveBeenLastCalledWith({
-        data: { 'hello': 'world' },
-        headers: { 'Authorization': 'Bearer access token' },
+        data: { hello: 'world' },
+        headers: { Authorization: 'Bearer access token' },
         method: 'get',
         url: 'http://localhost:3001/api/tasks',
       })
@@ -71,8 +70,8 @@ describe('axiosHandler', () => {
 
       // Then
       expect(axios).toHaveBeenLastCalledWith({
-        data: { 'hello': 'world' },
-        headers: { 'Authorization': 'Bearer access token' },
+        data: { hello: 'world' },
+        headers: { Authorization: 'Bearer access token' },
         method: 'get',
         url: 'http://localhost/api/tasks',
       })
@@ -83,7 +82,7 @@ describe('axiosHandler', () => {
 
     it('should return response data', async () => {
       // When
-      const response = await axiosHandler('get', x => x)(path, data)
+      const response = await axiosHandler('get', (x) => x)(path, data)
 
       // Then
       expect(response).toEqual({ data })

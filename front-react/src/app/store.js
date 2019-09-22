@@ -3,8 +3,8 @@ import { apiService, tokenService } from '../services'
 
 const SET_IS_AUTHENTICATED = 'app/SET_IS_AUTHENTICATED'
 
-const setIsAuthenticated = isAuthenticated => dispatch => {
-  if(!isAuthenticated){
+const setIsAuthenticated = (isAuthenticated) => (dispatch) => {
+  if (!isAuthenticated) {
     tokenService.removeTokens()
   }
   return dispatch({
@@ -12,7 +12,7 @@ const setIsAuthenticated = isAuthenticated => dispatch => {
   })
 }
 
-const authenticate = password => async dispatch => {
+const authenticate = (password) => async (dispatch) => {
   try {
     const data = {
       email: 'some@example.org',
@@ -27,10 +27,10 @@ const authenticate = password => async dispatch => {
   }
 }
 
-const loginSilently = () => async dispatch => {
+const loginSilently = () => async (dispatch) => {
   try {
     const refreshToken = tokenService.getRefreshToken()
-    if(!refreshToken) return
+    if (!refreshToken) return
     const tokens = await apiService.post('login/token', { refreshToken })
     await tokenService.reauthenticate(tokens)
     await dispatch({ type: SET_IS_AUTHENTICATED, payload: { isAuthenticated: true } })

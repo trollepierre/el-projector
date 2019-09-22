@@ -1,4 +1,4 @@
-const dummyTask = task => ({
+const dummyTask = (task) => ({
   id: 1,
   name: 'Build el-projector',
   description: 'more data about how to do it',

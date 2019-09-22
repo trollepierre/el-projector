@@ -5,7 +5,7 @@ export const FETCH_TASKS_STARTED = 'FETCH_TASKS_STARTED'
 export const FETCH_TASKS_SUCCEEDED = 'FETCH_TASKS_SUCCEEDED'
 export const FETCH_TASKS_FAILED = 'FETCH_TASKS_FAILED'
 
-const fetchTasks = loginSilently => async dispatch => {
+const fetchTasks = (loginSilently) => async (dispatch) => {
   dispatch({ type: FETCH_TASKS_STARTED })
   try {
     const data = await apiService.get('tasks')
@@ -14,7 +14,6 @@ const fetchTasks = loginSilently => async dispatch => {
       type: FETCH_TASKS_SUCCEEDED,
       payload: data,
     })
-
   } catch (error) {
     if (error.message === 'Request failed with status code 401') {
       try {
@@ -48,39 +47,33 @@ export const initialState = {
 }
 
 export const actionHandlers = {
-  [FETCH_TASKS_STARTED]: state => {
-    return {
-      ...state,
-      tasks: {
-        ...state.tasks,
-        error: undefined,
-        isLoading: true,
-      },
-    }
-  },
-  [FETCH_TASKS_SUCCEEDED]: (state, action) => {
-    return {
-      ...state,
-      tasks: {
-        data: action.payload,
-        error: undefined,
-        isLoading: false,
-      },
-    }
-  },
-  [FETCH_TASKS_FAILED]: (state, action) => {
-    return {
-      ...state,
-      tasks: {
-        ...state.tasks,
-        error: action.error,
-        isLoading: false,
-      },
-    }
-  },
+  [FETCH_TASKS_STARTED]: (state) => ({
+    ...state,
+    tasks: {
+      ...state.tasks,
+      error: undefined,
+      isLoading: true,
+    },
+  }),
+  [FETCH_TASKS_SUCCEEDED]: (state, action) => ({
+    ...state,
+    tasks: {
+      data: action.payload,
+      error: undefined,
+      isLoading: false,
+    },
+  }),
+  [FETCH_TASKS_FAILED]: (state, action) => ({
+    ...state,
+    tasks: {
+      ...state.tasks,
+      error: action.error,
+      isLoading: false,
+    },
+  }),
 }
 
 export const reducer = withReducer(initialState, actionHandlers)
 
-export const tasksSelector = state => state.tasks
+export const tasksSelector = (state) => state.tasks
 
