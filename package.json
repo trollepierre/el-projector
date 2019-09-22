@@ -24,5 +24,9 @@
     "test:front": "cd front-react && yarn test",
     "test": "yarn test:back && yarn test:front",
     "test:unit": "cd back && yarn test:unit && cd ../front-react && yarn test:unit"
+  },
+  "engines": {
+    "yarn": ">=1.13.0",
+    "node": ">=10.16.0"
   }
 }
