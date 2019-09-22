@@ -87,7 +87,6 @@ describe('store', () => {
       const password = 'password'
 
       describe('success case', () => {
-
         beforeEach(() => {
           apiService.post = jest.fn(() => 'tokens')
           tokenService.saveUserTokens = jest.fn()
@@ -251,7 +250,6 @@ describe('store', () => {
           try {
             await actions.loginSilently()(dispatch)
           } catch (error) {
-
             // Then
             expect(window.alert).toHaveBeenCalledWith('problem during login silently')
           }

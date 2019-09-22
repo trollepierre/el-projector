@@ -9,9 +9,7 @@ describe('WithReducer function', () => {
   }
 
   const actions = {
-    UPDATE_STATE: (state, action) => {
-      return { property: action.value }
-    },
+    UPDATE_STATE: (state, action) => ({ property: action.value }),
   }
 
   const reducer = withReducer(initialState, actions)

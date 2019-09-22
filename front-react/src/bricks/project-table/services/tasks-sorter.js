@@ -28,9 +28,7 @@ function sortByLastName(project) {
 }
 
 function sortByPoints(project) {
-  const sortByPoints = (task1, task2) => {
-    return task1.points < task2.points ? 1 : -1
-  }
+  const sortByPoints = (task1, task2) => (task1.points < task2.points ? 1 : -1)
   return project.sort(sortByPoints)
 }
 
@@ -44,9 +42,7 @@ function sortByLastDate(project) {
 }
 
 function sortByOrigin(project) {
-  const sortByOrigin = (task1, task2) => {
-    return task1.origin > task2.origin ? 1 : -1
-  }
+  const sortByOrigin = (task1, task2) => (task1.origin > task2.origin ? 1 : -1)
   return project.sort(sortByOrigin)
 }
 

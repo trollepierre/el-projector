@@ -29,35 +29,25 @@ const saveUserTokens = (tokens, data) => {
   }
 }
 
-const reauthenticate = tokens => {
+const reauthenticate = (tokens) => {
   _saveAccessTokenIntoLocalStorage(tokens.token)
   _saveRefreshTokenIntoLocalStorage(tokens.refreshToken)
 }
 
-const removeTokens = () => {
-  return new Promise((resolve) => {
-    _removeItemFromLocalStorage(ACCESS_TOKEN_STORAGE_KEY)
-    _removeItemFromLocalStorage(REFRESH_TOKEN_STORAGE_KEY)
-    _removeItemFromLocalStorage(AUTHENTICATED_USER_STORAGE_KEY)
-    resolve()
-  })
-}
+const removeTokens = () => new Promise((resolve) => {
+  _removeItemFromLocalStorage(ACCESS_TOKEN_STORAGE_KEY)
+  _removeItemFromLocalStorage(REFRESH_TOKEN_STORAGE_KEY)
+  _removeItemFromLocalStorage(AUTHENTICATED_USER_STORAGE_KEY)
+  resolve()
+})
 
-const isAuthenticated = () => {
-  return canUseDOM ? !!getInLocalStorage(ACCESS_TOKEN_STORAGE_KEY) : null
-}
+const isAuthenticated = () => (canUseDOM ? !!getInLocalStorage(ACCESS_TOKEN_STORAGE_KEY) : null)
 
-const getAccessToken = () => {
-  return canUseDOM ? getInLocalStorage(ACCESS_TOKEN_STORAGE_KEY) : null
-}
+const getAccessToken = () => (canUseDOM ? getInLocalStorage(ACCESS_TOKEN_STORAGE_KEY) : null)
 
-const getRefreshToken = () => {
-  return canUseDOM ? getInLocalStorage(REFRESH_TOKEN_STORAGE_KEY) : null
-}
+const getRefreshToken = () => (canUseDOM ? getInLocalStorage(REFRESH_TOKEN_STORAGE_KEY) : null)
 
-const getAuthenticatedUser = () => {
-  return canUseDOM ? JSON.parse(getInLocalStorage(AUTHENTICATED_USER_STORAGE_KEY)) : null
-}
+const getAuthenticatedUser = () => (canUseDOM ? JSON.parse(getInLocalStorage(AUTHENTICATED_USER_STORAGE_KEY)) : null)
 
 export default {
   saveUserTokens,
